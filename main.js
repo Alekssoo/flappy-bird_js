@@ -1,9 +1,29 @@
-const imgURL = "https://i.ibb.co/Q9yv5Jk/flappy-bird-set.png";
 
-const canvas = document.querySelector("canvas");
+
+const spriteSheet = ...;
+const physicSource = ...;
+const drawSorce = ...;
+
 const ctx = canvas.getContext("2d");
 
+const bird = new Bird({x, y, width, height, frames, spriteSheet, speedFlap, physicSource, drawSource, game}:
+    {
+        x: config.bird.x,
+        y: config.bird.y,
+        width: config.bird.width,
+        height: config.bird.height,
+        frames: config.bird.frames,
+        spriteSheet,
+        speedFlap: config.bird.speedFlap,
+        physicSource,
+        drawSource,
+        game,
+    })
+
 /*
+
+const imgURL = "https://i.ibb.co/Q9yv5Jk/flappy-bird-set.png";
+
 // объект изображения с ресурсами, которые будем
 // использовать для создания анимаций
 const img = new Image();
