@@ -16,11 +16,19 @@ export default class Bird {
     }
 
     draw() {
-        this.drawSorce.drawImage(this._spriteSheet, this._frames[this._frameIndex], this.x, this.y, this.width, this.height)
+        this.drawSource.drawImage({
+            spriteSheet: this._spriteSheet, 
+            image: this._frames[this._frameIndex], 
+            x: this.x, 
+            y: this.y, 
+            width: this.width, 
+            height: this.height
+            })
+            
     }
 
-    update() {
-        this.physicSource.update(this);
+    update(delta) {
+        this.physicSource.update(this, delta);
 
         if (this.y < 0) {
             this.y = 0
@@ -30,7 +38,10 @@ export default class Bird {
             this._game.defeat();
         }
 
-        this._frameIndex = (this._frameIndex++) % this._frames.length;
+        this._frameIndex = (this._frameIndex + delta) % this._frames.length;
+        //доработать, добавив умножение на константу, 
+        //например некую this._animationSpeed, чтобы можно было изменять
+        //скорость махов крыльев птицей
     }
 
     flap() {
