@@ -1,10 +1,12 @@
 class DrawSource {
     drawImage({spriteSheet, image, x, y, width, height}) {}
 
-    clear()
+    clear() {
+        
+    }
 }
 
-export default class CanvasDrawSource extends DrawSource{
+class CanvasDrawSource extends DrawSource {
     constructor({ canvas }) {
         super()
         this._canvas = canvas
@@ -20,3 +22,5 @@ export default class CanvasDrawSource extends DrawSource{
         this._canvas.clearRect(0, 0, this._canvas.width, this._canvas.height)
     }
 }
+
+export default CanvasDrawSource

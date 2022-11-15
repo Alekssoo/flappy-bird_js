@@ -1,8 +1,8 @@
 export default class Config {
-    gravity = 300
+    gravity = 300;
 
     canvas = {
-        class: "game",
+        class: ".canvas",
         width: 480,
         height: 320,
     }
