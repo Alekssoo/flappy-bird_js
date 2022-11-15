@@ -1,4 +1,8 @@
-import ResourceLoader from "./resources";
+import ResourceLoader from "./resources.js";
+import Config from "./config.js";
+import CanvasDrawSource from "./drawSources.js";
+import PhysicSource from "./physicSources.js";
+import MouseInputHandler from "./control.js";
 
 export default class Game {
     constructor() {
@@ -12,8 +16,8 @@ export default class Game {
         this.height = this._config.canvas.height;
         
 
-        this._drawSource = ...;
-        this._physicSource = ...;
+        this._drawSource = new CanvasDrawSource({ canvas: this._canvas });
+        this._physicSource = new PhysicSource({gravity: this._config.gravity});
         this._resourceLoader = new ResourceLoader();
         this._control = new MouseInputHandler({
             left:({x, y}) => {
@@ -34,8 +38,7 @@ export default class Game {
 
     reset() {
         this._score = 0;
-        this._bird = new Bird({x, y, width, height, frames, spriteSheet, speedFlap, physicSource, drawSource, game}:
-            {
+        this._bird = new Bird({
                 x: this._config.bird.x,
                 y: this._config.bird.y,
                 width: this._config.bird.width,
