@@ -6,7 +6,7 @@ class DrawSource {
     }
 }
 
-class CanvasDrawSource extends DrawSource {
+export default class CanvasDrawSource extends DrawSource {
     constructor({ canvas }) {
         super()
         this._canvas = canvas
@@ -22,5 +22,3 @@ class CanvasDrawSource extends DrawSource {
         this._canvas.clearRect(0, 0, this._canvas.width, this._canvas.height)
     }
 }
-
-export default CanvasDrawSource

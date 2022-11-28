@@ -1,10 +1,11 @@
 import Entity from "./base.js";
 
-export default class Bird extends Entity{
+export default class Bird extends Entity {
     constructor(params) {
         super (params)
+ //       const {frames, spriteSheet, flapSpeed, physicSource, drawSource, game} = params
         this._speedFlap = params.speedFlap;
-        this._physicSource = physicSource;
+        this._physicSource = params.physicSource;
         this.falling = true
     }
 

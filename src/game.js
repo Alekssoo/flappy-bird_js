@@ -1,8 +1,10 @@
-import ResourceLoader from "./resources.js";
-import Config from "./config.js";
-import CanvasDrawSource from "./drawSources.js";
-import PhysicSource from "./physicSources.js";
-import MouseInputHandler from "./control.js";
+import {RESOURCE_TYPE} from "./resources.js"
+import ResourceLoader from "./resources.js"
+import Config from "./../config.js"
+import CanvasDrawSource from "./drawSources.js"
+import PhysicSource from "./physicSources.js"
+import MouseInputHandler from "./control.js"
+import Bird from "./entities/bird.js"
 
 export default class Game {
     constructor() {
@@ -53,11 +55,11 @@ export default class Game {
     }
 
     update() {
-        this.bird.update()
+        this._bird.update()
     }
 
     draw() {
-        this.bird.draw()
+        this._bird.draw()
     }
 
     loop() {
@@ -85,3 +87,4 @@ export default class Game {
         // и количеством очков, лучшим результатом
     }
 }
+

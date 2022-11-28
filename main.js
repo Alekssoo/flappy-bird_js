@@ -7,6 +7,7 @@ game.prepare().then(() => {
 })
 
 /*
+анимация, сохранено как черновик
 
 const imgURL = "https://i.ibb.co/Q9yv5Jk/flappy-bird-set.png";
 

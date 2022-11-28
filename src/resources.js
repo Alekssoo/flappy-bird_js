@@ -1,9 +1,9 @@
-const RESOURCE_TYPE = {
+export const RESOURCE_TYPE = {
     IMAGE: "image",
 }
 
 export default class ResourceLoader {
-    _typeLoadersMap ={
+    _typeLoadersMap = {
         [RESOURCE_TYPE.IMAGE]: async ({src, width, height}) => {
             return new Promise((resolve, reject) => {
                 const image = new Image(width, height);
