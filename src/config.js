@@ -1,4 +1,6 @@
 export default class Config {
+    gravity = 30
+
     canvas = {
         class: "game",
         width: 480,
@@ -17,7 +19,7 @@ export default class Config {
         width: 34,
         height: 26,
 
-        speedFlap: 300,
+        speedFlap: 10,
 
         frames:[
             {
