@@ -12,7 +12,7 @@ export default class Bird extends Entity {
     update(delta) {
         super.update(delta)
 
-        this.physicSource.update(this, delta);
+        this._physicSource.update(this, delta);
 
         if (this.y < 0) {
             this.y = 0

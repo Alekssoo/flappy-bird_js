@@ -23,7 +23,7 @@ export default class Game {
         this._resourceLoader = new ResourceLoader();
         this._control = new MouseInputHandler({
             left:({x, y}) => {
-                this.bird.flap()
+                this._bird.flap()
             }
         })
 
@@ -54,8 +54,8 @@ export default class Game {
             })
     }
 
-    update() {
-        this._bird.update()
+    update(delta) {
+        this._bird.update(delta)
     }
 
     draw() {
