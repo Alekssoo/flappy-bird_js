@@ -8,7 +8,7 @@ export default class Config {
     spriteSheet = {
         width: 606,
         height: 428,
-        src: ""
+        src: 'resources/spritesheet.png',
     }
 
     bird = {
