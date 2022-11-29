@@ -3,7 +3,7 @@ export default class Entity {
         this.x = x;
         this.y = y;
         this.width = width;
-        this.width = height;
+        this.height = height;
         this.speed = 0;
         this.falling = false
 
@@ -16,7 +16,7 @@ export default class Entity {
     }
 
     draw() {
-        this.drawSource.drawImage({
+        this._drawSource.drawImage({
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex], 
             x: this.x, 
@@ -27,7 +27,7 @@ export default class Entity {
     }
 
     update(delta) {
-        this._frameIndex = (this._frameIndex + delta) % this._frames.length;
+        this._frameIndex = (this._frameIndex + Math.ceil(delta)) % this._frames.length;
         //доработать, добавив умножение на константу, 
         //например некую this._animationSpeed, чтобы можно было изменять
         //скорость махов крыльев птицей

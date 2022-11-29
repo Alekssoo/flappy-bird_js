@@ -1,6 +1,6 @@
 import {RESOURCE_TYPE} from "./resources.js"
 import ResourceLoader from "./resources.js"
-import Config from "./../config.js"
+import Config from "./config.js"
 import CanvasDrawSource from "./drawSources.js"
 import PhysicSource from "./physicSources.js"
 import MouseInputHandler from "./control.js"
@@ -62,26 +62,35 @@ export default class Game {
         this._bird.draw()
     }
 
-    loop() {
+    _loop() {
         const now = Date.now()
-        const delta = this._lastUpdate - now
-        this.reset()
-        this.update(delta)
-        this._drawSource.clear()
-        this.draw()
-        requestAnimationFrame(this.start.bind(this))
+        const delta = now - this._lastUpdate //смена мест операторов в разности
+        this.update(delta / 1000)
 
-        this._lastUpdate = now
+        if (this._playing) {
+            this._drawSource.clear()
+            this.draw()
+    
+            this._lastUpdate = now
+
+            requestAnimationFrame(this._loop.bind(this))
+        }
+
+
+        
     }
 
     start() {
+        this._playing = true;
         this._control.subscribe()
         this._lastUpdate = Date.now()
-        this.loop()
+        this.reset()
+        this._loop()
     }
 
 
     defeat() {
+        this._playing = false; // added
         alert(`The end: ${this._score}`)
         //вместо алерта нарисовать экран с надписью окончания игры
         // и количеством очков, лучшим результатом

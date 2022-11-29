@@ -1,4 +1,4 @@
-export default class Control {
+class Control {
     eventHandlerMap = {}
 
     constructor(eventControlConfig) {
@@ -13,7 +13,7 @@ export default class Control {
     }
 }
 
-class MouseInputHandler extends Control {
+export default class MouseInputHandler extends Control {
     buttonIndexNameMap = {
         0: "left",
         1: "middle",
@@ -23,7 +23,7 @@ class MouseInputHandler extends Control {
     eventHandlerMap = {
         click: (event) => {
             //при клике забираем имя кнопки по массиву выше, 
-            //исходя из полученого кода
+            //исходя из полученого кода(цифры)
             const buttonName = this.buttonIndexNameMap[event.button]
             const handler = this._eventControlConfig[buttonName]
             if (handler) {
