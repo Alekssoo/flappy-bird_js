@@ -5,7 +5,7 @@ export const RESOURCE_TYPE = {
 export default class ResourceLoader {
     _typeLoadersMap = {
         [RESOURCE_TYPE.IMAGE]: async ({src, width, height}) => {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve, reject) => {          
                 const image = new Image(width, height);
                 image.addEventListener("load", () => resolve(image))
                 image.addEventListener("error", (error) => reject(error))
@@ -15,12 +15,16 @@ export default class ResourceLoader {
     }
 
     async load(resource) {
-        const loader = this._typeLoadersMap[resource.type]
-        return await loader(resource)
+        try {
+            const loader =  this._typeLoadersMap[resource.type]
+            return await loader(resource)
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
-//если будет больше типов ресурсов кроме изображения,
+//если далее  будет больше типов ресурсов кроме изображения,
 //то логичнее сделать здесь еще класс для массовой загрузки
 //сохранения их внутри этого класса и затем возможность 
 //их получить из этого класса

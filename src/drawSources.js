@@ -9,12 +9,17 @@ class DrawSource {
 export default class CanvasDrawSource extends DrawSource {
     constructor({ canvas }) {
         super()
-        this._canvas = canvas
+        this._canvas = canvas;
         this._context = canvas.getContext('2d')
     }
     
     drawImage({spriteSheet, image, x, y, width, height}) {
         super.drawImage({spriteSheet, image, x, y, width, height})
+        //для проверки получамого изображения...................
+        //const sprite = document.querySelector(".sprite")
+        //sprite.innerHTML = `<img src="${spriteSheet}">`;
+        //sprite.innerHTML = spriteSheet;
+         //.....................................................
         this._context.drawImage(spriteSheet, image.x, image.y, image.w, image.h, x, y, width, height)
     }
 
