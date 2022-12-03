@@ -7,6 +7,7 @@ export default class PhysicSource {
         if (entity.falling) {
             entity.speed += this._gravity * delta
             entity.y += entity.speed * delta * 3 //изменение высоты объекта при обновлении
+            //добавил умножение для более высокого поднятия птички на клик
         }
     }
 }

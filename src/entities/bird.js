@@ -24,6 +24,6 @@ export default class Bird extends Entity {
     }
 
     flap() {
-        this.speed = -this._speedFlap*7;
+        this.speed = -this._speedFlap*7; //добавил умножение для нормальной скорости изменения высоты птички при клике
     }
 }
