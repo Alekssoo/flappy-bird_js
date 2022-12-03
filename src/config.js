@@ -19,7 +19,7 @@ export default class Config {
         width: 34,
         height: 26,
 
-        speedFlap: 10,
+        speedFlap: 5,
 
         frames:[
             {

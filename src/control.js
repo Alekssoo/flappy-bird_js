@@ -5,7 +5,7 @@ class Control {
         this._eventControlConfig = eventControlConfig
     }
 
-    subscribe() { //называется так, потому что подписывается на событие
+    subscribe() { // "подписывается" на событие
         // в нашем случае на клик
         Object.entries(this.eventHandlerMap).forEach(([name, handler]) => {
             document.addEventListener(name, handler)

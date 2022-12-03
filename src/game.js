@@ -64,7 +64,7 @@ export default class Game {
 
     _loop() {
         const now = Date.now()
-        const delta = now - this._lastUpdate //смена мест операторов в разности
+        const delta = now - this._lastUpdate
         this.update(delta / 1000)
 
         if (this._playing) {
