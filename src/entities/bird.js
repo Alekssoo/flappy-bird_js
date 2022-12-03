@@ -24,6 +24,6 @@ export default class Bird extends Entity {
     }
 
     flap() {
-        this.speed = -this._speedFlap;
+        this.speed = -this._speedFlap*7;
     }
 }
