@@ -31,8 +31,6 @@ export default class Backgrd extends Entity {
     }
 
     update(delta) {
-        super.update(delta)
-
         this._index += 0.3;
         this.x = -((this._index * this.animationSpeed) % this.width);
 

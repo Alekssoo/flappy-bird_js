@@ -8,7 +8,7 @@ export default class Tube extends Entity {
 
     draw() {
         super.draw()
-        //отрисовываем фон, который продлевает текущий(ниже)
+        //отрисовываем нижнюю трубу
         this._drawSource.drawImage({
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex], 
@@ -18,11 +18,11 @@ export default class Tube extends Entity {
             height: this.height
             })
 
-        //отрисовываем текущий убегающий влево фон
+        //отрисовываем верхнюю трубу
         this._drawSource.drawImage({
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex+1], 
-            x: this.x + 70, 
+            x: this.x + this.width + 20, 
             y: 0, 
             width: this.width, 
             height: this.height
@@ -31,10 +31,11 @@ export default class Tube extends Entity {
     }
 
     update(delta) {
-        super.update(delta)
 
-        //this._index += 0.3
-        this.x -= Math.ceil(delta);
+        //this._index += 0.3;
+        //this.x -= this._index * this.animationSpeed
+
+        this.x -= Math.ceil(delta * this.animationSpeed);
 
     }
 
