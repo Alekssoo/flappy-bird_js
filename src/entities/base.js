@@ -1,11 +1,12 @@
 export default class Entity {
-    constructor({ x, y, width, height, frames, spriteSheet, drawSource, game }) {
+    constructor({ x, y, width, height, frames, spriteSheet, drawSource, game, animationSpeed }) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.speed = 0;
         this.falling = false
+        this.animationSpeed = animationSpeed
 
         //const {frames, spriteSheet, speedFlap, physicSource, drawSource, game} = params
         this._frames = frames;

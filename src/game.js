@@ -5,6 +5,7 @@ import CanvasDrawSource from "./drawSources.js"
 import PhysicSource from "./physicSources.js"
 import MouseInputHandler from "./control.js"
 import Bird from "./entities/bird.js"
+import Backgrd from "./entities/back.js"
 
 export default class Game {
     constructor() {
@@ -50,16 +51,31 @@ export default class Game {
                 speedFlap: this._config.bird.speedFlap,
                 physicSource: this._physicSource,
                 drawSource: this._drawSource,
-                game: this
+                game: this,
+                animationSpeed: this._config.animationSpeed,
             })
+        this._back = new Backgrd({
+                x: this._config.backGround.x,
+                y: this._config.backGround.y,
+                width: this._config.backGround.width,
+                height: this._config.backGround.height,
+                frames: this._config.bird.frames,
+                spriteSheet: this._spriteSheet,
+                physicSource: this._physicSource,
+                drawSource: this._drawSource,
+                game: this,
+                animationSpeed: this._config.animationSpeed,
+        })
     }
 
     update(delta) {
         this._bird.update(delta)
+        this._back.update(delta)
     }
 
     draw() {
         this._bird.draw()
+        this._back.draw()
     }
 
     _loop() {

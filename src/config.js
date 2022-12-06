@@ -1,6 +1,8 @@
 export default class Config {
     gravity = 30
 
+    animationSpeed = 3.1
+
     canvas = {
         class: ".game",
         width: 480,
@@ -11,6 +13,14 @@ export default class Config {
         width: 606,
         height: 428,
         src: '../resources/spritesheet.png',
+    }
+
+    backGround = {
+        x: 0, 
+        y: 0,
+        width: this.canvas.width,
+        height: this.canvas.height,
+
     }
 
     bird = {
