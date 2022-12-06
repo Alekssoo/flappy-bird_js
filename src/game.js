@@ -18,7 +18,7 @@ export default class Game {
         this._canvas.height = this._config.canvas.height;
 
         this.width = this._config.canvas.width;
-        this.height = this._config.canvas.height;
+        this.height = this._config.canvas.height - this._config.ground.height+7;
         
 
         this._drawSource = new CanvasDrawSource({ canvas: this._canvas });
@@ -80,31 +80,31 @@ export default class Game {
                 game: this,
                 animationSpeed: this._config.animationSpeed,
         })
-        this._tube = new Tube({// нужно настроить
-                x: this._config.backGround.x,
-                y: this._config.backGround.y,
-                width: this._config.backGround.width,
-                height: this._config.backGround.height,
-                frames: this._config.backGround.frames,
+        this._tube = new Tube({
+                x: this._config.tube.x,
+                y: this._config.tube.y,
+                width: this._config.tube.width,
+                height: this._config.tube.height,
+                frames: this._config.tube.frames,
                 spriteSheet: this._spriteSheet,
                 physicSource: this._physicSource,
                 drawSource: this._drawSource,
                 game: this,
                 animationSpeed: this._config.animationSpeed,
-    })
+        })
     }
 
     update(delta) {
         this._bird.update(delta)
         this._back.update(delta)
         this._ground.update(delta)
-        //this._tube.update(delta)
+        this._tube.update(delta)
     }
 
     draw() {
         this._back.draw()
         this._ground.draw()
-        //this._tube.draw()
+        this._tube.draw()
         this._bird.draw()
         
     }

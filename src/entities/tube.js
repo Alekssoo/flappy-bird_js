@@ -12,7 +12,7 @@ export default class Tube extends Entity {
         this._drawSource.drawImage({
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex], 
-            x: this.x + this.width, 
+            x: this.x, 
             y: this.y, 
             width: this.width, 
             height: this.height
@@ -21,9 +21,9 @@ export default class Tube extends Entity {
         //отрисовываем текущий убегающий влево фон
         this._drawSource.drawImage({
             spriteSheet: this._spriteSheet, 
-            image: this._frames[this._frameIndex], 
-            x: this.x, 
-            y: this.y, 
+            image: this._frames[this._frameIndex+1], 
+            x: this.x + 70, 
+            y: 0, 
             width: this.width, 
             height: this.height
             })
@@ -33,8 +33,8 @@ export default class Tube extends Entity {
     update(delta) {
         super.update(delta)
 
-        this._index += 0.3;
-        this.x = -((this._index * this.animationSpeed) % this.width);
+        //this._index += 0.3
+        this.x -= Math.ceil(delta);
 
     }
 

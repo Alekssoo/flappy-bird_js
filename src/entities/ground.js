@@ -8,7 +8,7 @@ export default class Ground extends Entity {
 
     draw() {
         super.draw()
-        //отрисовываем фон, который продлевает текущий(ниже)
+        //отрисовываем почву, которая продлевает текущую(ниже)
         this._drawSource.drawImage({
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex], 
@@ -18,7 +18,7 @@ export default class Ground extends Entity {
             height: this.height
             })
 
-        //отрисовываем текущий убегающий влево фон
+        //отрисовываем текущую убегающую влево почву
         this._drawSource.drawImage({
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex], 

@@ -51,26 +51,26 @@ export default class Config {
             },]
     }
 
-    tube = {//еще нужно настроить
+    tube = {//еще нужно донастроить
         //рисуем на канвасе по этим координатам
-        x: 0, 
-        y: 0,
-        width: this.canvas.width,
-        height: this.canvas.height,
+        x: this.canvas.width/2 + 20, 
+        y: this.canvas.height - 113,
+        width: 50,
+        height: 113,
 
         frames:[// забираем из спрайта с этими координатами
             {
-                x: 0,
+                x: 502,
                 y: 0,
-                w: 275,
-                h: 227,
+                w: 52,
+                h: 113,
 
             },
             {
-                x: 0,
-                y: 0,
-                w: 275,
-                h: 227,
+                x:554,
+                y: 287,
+                w: 52,
+                h: 113,
 
             },
         
