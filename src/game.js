@@ -59,7 +59,7 @@ export default class Game {
                 y: this._config.backGround.y,
                 width: this._config.backGround.width,
                 height: this._config.backGround.height,
-                frames: this._config.bird.frames,
+                frames: this._config.backGround.frames,
                 spriteSheet: this._spriteSheet,
                 physicSource: this._physicSource,
                 drawSource: this._drawSource,
@@ -74,8 +74,9 @@ export default class Game {
     }
 
     draw() {
-        this._bird.draw()
         this._back.draw()
+        this._bird.draw()
+        
     }
 
     _loop() {
@@ -89,6 +90,10 @@ export default class Game {
     
             this._lastUpdate = now
 
+            let requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame ||
+                            window.webkitRequestAnimationFrame || 
+                            window.msRequestAnimationFrame;
             requestAnimationFrame(this._loop.bind(this))
         }
 

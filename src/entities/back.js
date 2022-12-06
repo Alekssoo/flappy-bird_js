@@ -10,13 +10,26 @@ export default class Backgrd extends Entity {
         this._index = 0
     }
 
+    draw() {
+        super.draw()
+
+        this._drawSource.drawImage({
+            spriteSheet: this._spriteSheet, 
+            image: this._frames[this._frameIndex], 
+            x: this.x, 
+            y: this.y, 
+            width: this.width, 
+            height: this.height
+            })
+    }
+
     update(delta) {
         super.update(delta)
 
         this._physicSource.update(this, delta);
 
         this._index += 0.3;
-        //this.x = -((index * SPEED) % canvas.width);
+        this.x = -((this._index * this.animationSpeed) % this.width);
 
         if (this.y < 0) {
             this.y = 0
@@ -24,7 +37,4 @@ export default class Backgrd extends Entity {
 
     }
 
-    flap() {
-        this.speed = -this._speedFlap*7; //добавил умножение для нормальной скорости изменения высоты птички
-    }
 }

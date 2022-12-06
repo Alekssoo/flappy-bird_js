@@ -21,6 +21,14 @@ export default class Config {
         width: this.canvas.width,
         height: this.canvas.height,
 
+        frames:[
+            {
+                x: 0,
+                y: 0,
+                w: 275,
+                h: 227,
+
+            },]
     }
 
     bird = {
