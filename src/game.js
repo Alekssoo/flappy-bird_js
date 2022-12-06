@@ -6,6 +6,8 @@ import PhysicSource from "./physicSources.js"
 import MouseInputHandler from "./control.js"
 import Bird from "./entities/bird.js"
 import Backgrd from "./entities/back.js"
+import Ground from "./entities/ground.js"
+import Tube from "./entities/tube.js"
 
 export default class Game {
     constructor() {
@@ -66,15 +68,43 @@ export default class Game {
                 game: this,
                 animationSpeed: this._config.animationSpeed,
         })
+        this._ground = new Ground({
+                x: this._config.ground.x,
+                y: this._config.ground.y,
+                width: this._config.ground.width,
+                height: this._config.ground.height,
+                frames: this._config.ground.frames,
+                spriteSheet: this._spriteSheet,
+                physicSource: this._physicSource,
+                drawSource: this._drawSource,
+                game: this,
+                animationSpeed: this._config.animationSpeed,
+        })
+        this._tube = new Tube({// нужно настроить
+                x: this._config.backGround.x,
+                y: this._config.backGround.y,
+                width: this._config.backGround.width,
+                height: this._config.backGround.height,
+                frames: this._config.backGround.frames,
+                spriteSheet: this._spriteSheet,
+                physicSource: this._physicSource,
+                drawSource: this._drawSource,
+                game: this,
+                animationSpeed: this._config.animationSpeed,
+    })
     }
 
     update(delta) {
         this._bird.update(delta)
         this._back.update(delta)
+        this._ground.update(delta)
+        //this._tube.update(delta)
     }
 
     draw() {
         this._back.draw()
+        this._ground.draw()
+        //this._tube.draw()
         this._bird.draw()
         
     }
