@@ -103,8 +103,8 @@ export default class Game {
 
     draw() {
         this._back.draw()
-        this._ground.draw()
         this._tube.draw()
+        this._ground.draw()       
         this._bird.draw()
         
     }
