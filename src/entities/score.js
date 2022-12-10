@@ -1,6 +1,6 @@
 import Entity from "./base.js";
 
-export default class Tube extends Entity {
+export default class Score extends Entity {
     constructor(params) {
         super (params)
         this._result = 0

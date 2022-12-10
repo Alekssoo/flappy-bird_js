@@ -119,6 +119,24 @@ export default class Config {
         ]
     }
 
+    start = {
+        //рисуем на канвасе по этим координатам
+        x: this.canvas.width * 0.3, 
+        y: this.canvas.height * 0.3, 
+        width: 174,
+        height: 160,
+
+        frames:[
+            // забираем из спрайта с этими координатами
+            {
+                x: 0,
+                y: 227,
+                w: 174,
+                h: 160,
+
+            },]
+    }
+
     score = {
         //рисуем на канвасе по этим координатам
         x: this.canvas.width * 0.25, 

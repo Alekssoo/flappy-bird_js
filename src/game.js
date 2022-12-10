@@ -8,6 +8,7 @@ import Bird from "./entities/bird.js"
 import Backgrd from "./entities/back.js"
 import Ground from "./entities/ground.js"
 import Tube from "./entities/tube.js"
+import Start from "./entities/start.js"
 import Score from "./entities/score.js"
 
 export default class Game {
@@ -106,6 +107,19 @@ export default class Game {
             game: this,
             animationSpeed: this._config.animationSpeed,
         })
+
+        this._start = new Start({
+            x: this._config.start.x,
+            y: this._config.start.y,
+            width: this._config.start.width,
+            height: this._config.start.height,
+            frames: this._config.start.frames,
+            spriteSheet: this._spriteSheet,
+            physicSource: this._physicSource,
+            drawSource: this._drawSource,
+            game: this,
+            animationSpeed: this._config.animationSpeed,
+        })
     }
 
     update(delta) {
@@ -120,7 +134,7 @@ export default class Game {
         this._tube.draw()
         this._ground.draw()       
         this._bird.draw()
-        
+        //this._start.draw()
     }
 
     _loop() {
@@ -146,6 +160,7 @@ export default class Game {
     }
 
     start() {
+        //setTimeout(function() {this._playing = true;}, 5000)
         this._playing = true;
         this._control.subscribe()
         this._lastUpdate = Date.now()
