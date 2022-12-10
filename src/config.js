@@ -152,6 +152,9 @@ export default class Config {
                 w: 226,
                 h: 161,
 
-            },]
+            },],
+
+        font: "22px Verdana",
+        color: "black"
     }
 }

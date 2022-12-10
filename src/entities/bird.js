@@ -17,8 +17,12 @@ export default class Bird extends Entity {
         if (this.y < 0) {
             this.y = 0
         }
-
-        if (this.y + this.height >= this._game.height) {
+ 
+        if ((this.y + this.height >= this._game.height) 
+        || ((((this.x + this.width >= this._game.tube.x) && (this.x + this.width < this._game.tube.x + this._game.tube.width))
+         && (this.y + this.height === this._game.tube.y))
+            || (this.x + this.width === this._game.tube.xUp) 
+             )) {
             this._game.defeat();
         }
     }

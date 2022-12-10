@@ -82,7 +82,7 @@ export default class Game {
                 game: this,
                 animationSpeed: this._config.animationSpeed,
         })
-        this._tube = new Tube({
+        this.tube = new Tube({
                 x: this._config.tube.x,
                 y: this._config.tube.y,
                 width: this._config.tube.width,
@@ -106,6 +106,12 @@ export default class Game {
             drawSource: this._drawSource,
             game: this,
             animationSpeed: this._config.animationSpeed,
+            resX: this._config.score.x + this._config.score.width/2,
+            resY: this._config.score.y + this._config.score.height/2,
+            bestX: this._config.score.x + this._config.score.width/2,
+            bestY: this._config.score.y + this._config.score.height/2 + 50,
+            font: this._config.score.font,
+            color: this._config.score.color,
         })
 
         this._start = new Start({
@@ -126,15 +132,16 @@ export default class Game {
         this._bird.update(delta)
         this._back.update(delta)
         this._ground.update(delta)
-        this._tube.update(delta)
+        this.tube.update(delta)
     }
 
     draw() {
         this._back.draw()
-        this._tube.draw()
+        this.tube.draw()
         this._ground.draw()       
         this._bird.draw()
         //this._start.draw()
+
     }
 
     _loop() {
@@ -173,6 +180,7 @@ export default class Game {
         this._playing = false; // added
 
         this._score.draw()
+        //this._score.fillText({x, y, text, font })
 
         //alert(`The end: ${this._score}`)
         //вместо алерта нарисовать экран с надписью окончания игры

@@ -1,6 +1,8 @@
 class DrawSource {
     drawImage({spriteSheet, image, x, y, width, height}) {}
 
+    fillText({x, y, text, font, color}) {}
+
     clear() {
         
     }
@@ -24,6 +26,16 @@ export default class CanvasDrawSource extends DrawSource {
             this._context.drawImage(sprite, image.x, image.y, image.w, image.h, x, y, width, height)
         })
     }
+
+    fillText({x, y, text, font, color = "black" }) {
+        //this.context.beginPath();
+        super.fillText({text, font, color, x, y})
+        this._context.fillStyle = color;
+        this._context.font = font//"22px Verdana";
+        this._context.fillText(text, x, y)
+        //context.closePath();
+    } 
+  
 
     clear() {
         super.clear()
