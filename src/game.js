@@ -8,6 +8,7 @@ import Bird from "./entities/bird.js"
 import Backgrd from "./entities/back.js"
 import Ground from "./entities/ground.js"
 import Tube from "./entities/tube.js"
+import Score from "./entities/score.js"
 
 export default class Game {
     constructor() {
@@ -92,6 +93,19 @@ export default class Game {
                 game: this,
                 animationSpeed: this._config.animationSpeed,
         })
+
+        this._score = new Score({
+            x: this._config.score.x,
+            y: this._config.score.y,
+            width: this._config.score.width,
+            height: this._config.score.height,
+            frames: this._config.score.frames,
+            spriteSheet: this._spriteSheet,
+            physicSource: this._physicSource,
+            drawSource: this._drawSource,
+            game: this,
+            animationSpeed: this._config.animationSpeed,
+        })
     }
 
     update(delta) {
@@ -142,7 +156,10 @@ export default class Game {
 
     defeat() {
         this._playing = false; // added
-        alert(`The end: ${this._score}`)
+
+        this._score.draw()
+
+        //alert(`The end: ${this._score}`)
         //вместо алерта нарисовать экран с надписью окончания игры
         // и количеством очков, лучшим результатом
     }

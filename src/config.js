@@ -51,7 +51,7 @@ export default class Config {
             },]
     }
 
-    tube = {//еще нужно донастроить
+    tube = {
         //рисуем на канвасе по этим координатам
         x: this.canvas.width/2 + 20, 
         y: this.canvas.height - 113,
@@ -80,7 +80,7 @@ export default class Config {
     bird = {
         //рисуем на канвасе по этим координатам
         x: 50, 
-        y: 100,
+        y: 120,
         width: 34,
         height: 26,
 
@@ -117,5 +117,23 @@ export default class Config {
 
             },  
         ]
+    }
+
+    score = {
+        //рисуем на канвасе по этим координатам
+        x: this.canvas.width * 0.25, 
+        y: this.canvas.height * 0.3, 
+        width: 226,
+        height: 161,
+
+        frames:[
+            // забираем из спрайта с этими координатами
+            {
+                x: 174,
+                y: 230,
+                w: 226,
+                h: 161,
+
+            },]
     }
 }
