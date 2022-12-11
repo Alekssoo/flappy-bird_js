@@ -133,6 +133,7 @@ export default class Game {
         this._back.update(delta)
         this._ground.update(delta)
         this.tube.update(delta)
+        this._score.update()
     }
 
     draw() {

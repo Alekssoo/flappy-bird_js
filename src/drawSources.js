@@ -27,13 +27,13 @@ export default class CanvasDrawSource extends DrawSource {
         })
     }
 
-    fillText({x, y, text, font, color = "black" }) {
-        //this.context.beginPath();
+    fillText({text, font, color, x, y}) {
+        this._context.beginPath();
         super.fillText({text, font, color, x, y})
         this._context.fillStyle = color;
         this._context.font = font//"22px Verdana";
         this._context.fillText(text, x, y)
-        //context.closePath();
+        this._context.closePath();
     } 
   
 
