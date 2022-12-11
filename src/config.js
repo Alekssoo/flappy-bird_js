@@ -154,7 +154,47 @@ export default class Config {
 
             },],
 
-        font: "22px Verdana",
-        color: "black"
+        font: "18px Verdana",
+        color: "green"
+    }
+
+    medal = {
+        //рисуем на канвасе по этим координатам
+        x: this.score.x + this.score.width * 0.12, 
+        y: this.score.y + this.score.height * 0.53,
+        width: 47,
+        height: 45,
+
+        // забираем из спрайта с этими координатами
+        frames:[
+            {
+                x: 312,
+                y: 113,
+                w: 47,
+                h: 45,
+
+            },
+            {
+                x: 359,
+                y: 113,
+                w: 47,
+                h: 45,
+
+            },                
+            {
+                x: 312,
+                y: 158,
+                w: 47,
+                h: 45,
+
+            },
+            {
+                x: 359,
+                y: 158,
+                w: 47,
+                h: 45,
+
+            }, 
+        ]
     }
 }

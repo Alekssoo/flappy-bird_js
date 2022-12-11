@@ -1,7 +1,7 @@
 class DrawSource {
     drawImage({spriteSheet, image, x, y, width, height}) {}
 
-    fillText({x, y, text, font, color}) {}
+    fillText({text, font, color, x, y}) {}
 
     clear() {
         
@@ -27,13 +27,18 @@ export default class CanvasDrawSource extends DrawSource {
         })
     }
 
-    fillText({text, font, color, x, y}) {
-        this._context.beginPath();
-        super.fillText({text, font, color, x, y})
+    async fillText({text, font, color, x, y}) {
+
         this._context.fillStyle = color;
-        this._context.font = font//"22px Verdana";
-        this._context.fillText(text, x, y)
-        this._context.closePath();
+        this._context.font = font
+        try {
+            super.fillText({text, font, color, x, y})
+
+            this._context.fillText(await text, await x, await y)
+
+        } catch(error) {
+            console.log(error);
+        }
     } 
   
 

@@ -10,6 +10,7 @@ import Ground from "./entities/ground.js"
 import Tube from "./entities/tube.js"
 import Start from "./entities/start.js"
 import Score from "./entities/score.js"
+import Medal from "./entities/medal.js"
 
 export default class Game {
     constructor() {
@@ -106,12 +107,25 @@ export default class Game {
             drawSource: this._drawSource,
             game: this,
             animationSpeed: this._config.animationSpeed,
-            resX: this._config.score.x + this._config.score.width/2,
-            resY: this._config.score.y + this._config.score.height/2,
-            bestX: this._config.score.x + this._config.score.width/2,
-            bestY: this._config.score.y + this._config.score.height/2 + 50,
+            resX: this._config.score.x + this._config.score.width * 0.7,
+            resY: this._config.score.y + this._config.score.height * 0.57,
+            bestX: this._config.score.x + this._config.score.width * 0.7,
+            bestY: this._config.score.y + this._config.score.height * 0.85,
             font: this._config.score.font,
             color: this._config.score.color,
+        })
+
+        this.medal = new Medal({
+            x: this._config.medal.x,
+            y: this._config.medal.y,
+            width: this._config.medal.width,
+            height: this._config.medal.height,
+            frames: this._config.medal.frames,
+            spriteSheet: this._spriteSheet,
+            physicSource: this._physicSource,
+            drawSource: this._drawSource,
+            game: this,
+            animationSpeed: this._config.animationSpeed,
         })
 
         this._start = new Start({
@@ -134,6 +148,7 @@ export default class Game {
         this._ground.update(delta)
         this.tube.update(delta)
         this._score.update()
+        //this.medal.update()
     }
 
     draw() {
@@ -181,6 +196,7 @@ export default class Game {
         this._playing = false; // added
 
         this._score.draw()
+        this.medal.draw()
         //this._score.fillText({x, y, text, font })
 
         //alert(`The end: ${this._score}`)
