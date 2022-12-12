@@ -137,6 +137,24 @@ export default class Config {
             },]
     }
 
+    button = {
+        //рисуем на канвасе по этим координатам
+        x: this.canvas.width * 0.4,
+        y: this.canvas.height * 0.82, 
+        width: 81,
+        height: 27,
+
+        frames:[
+            // забираем из спрайта с этими координатами
+            {
+                x: 246,
+                y: 400,
+                w: 81,
+                h: 27,
+
+            },]
+    }
+
     score = {
         //рисуем на канвасе по этим координатам
         x: this.canvas.width * 0.25, 

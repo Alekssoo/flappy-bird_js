@@ -48,7 +48,7 @@ export default class Score extends Entity {
             localStorage.setItem("best", this._result)
         }
         
-        if (this._result === 100 && this._index === 0) {
+        if (this._result === 50 && this._index === 0) {
             this._game.medal.update()
         } else if (this._result === 200 && this._index === 0) {
             this._game.medal.update()

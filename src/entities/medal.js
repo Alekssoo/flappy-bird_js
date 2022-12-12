@@ -15,5 +15,5 @@ export default class Medal extends Entity {
         }
         
      }
-
+ 
 }
