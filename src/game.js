@@ -20,6 +20,7 @@ export default class Game {
         this._canvas = document.querySelector(this._config.canvas.class);
         this._canvas.width = this._config.canvas.width;
         this._canvas.height = this._config.canvas.height;
+        this._canvCoords = this._canvas.getBoundingClientRect()
 
         this.width = this._config.canvas.width;
         this.height = this._config.canvas.height - this._config.ground.height+7;
@@ -30,12 +31,15 @@ export default class Game {
         this._resourceLoader = new ResourceLoader();
         this._control = new MouseInputHandler({
             left:({x, y}) => {
-                if (this._playing) {
-                    this._bird.flap()
-                } else if (this._first) {
-                    this.start()
-                } else {
-                    this.start()
+                // если игра идет и указатель на canvas
+                if (this._playing) { 
+                    if (x >= this._canvCoords.left 
+                    && x < this._canvCoords.left + this._canvas.width
+                    && y >= this._canvCoords.top
+                    && y < this._canvCoords.top + this._canvas.height) {
+                        this._bird.flap() } //птичка машет
+                } else { //если игра не идет, то при клике 
+                    this.start() // на кнопку рестарт
                 }
             }
         })
@@ -242,7 +246,7 @@ export default class Game {
         this._canvas.onclick = restart
 
         // для подсчета координат указателя при нажатии
-        let canvCoords = this._canvas.getBoundingClientRect();
+        //let canvCoords = this._canvas.getBoundingClientRect();
         
         //сохраняем this для использования контекста в локальной функции
         let self = this
@@ -250,10 +254,10 @@ export default class Game {
         //функция, которая перезапускает игру
         function restart (event) {
             //сравниваем координаты указателя для совпадения с кнопкой
-            if (event.clientX - canvCoords.left >= self._button.x 
-                && event.clientX - canvCoords.left < self._button.x + self._button.width
-                && event.clientY - canvCoords.top >= self._button.y
-                && event.clientY - canvCoords.top < self._button.y + self._button.height) {
+            if (event.clientX - self._canvCoords.left >= self._button.x 
+                && event.clientX - self._canvCoords.left < self._button.x + self._button.width
+                && event.clientY - self._canvCoords.top >= self._button.y
+                && event.clientY - self._canvCoords.top < self._button.y + self._button.height) {
                     //и перезапускаем игру
                     //console.log("работает внутренняя функция")
                     self.restart()                
