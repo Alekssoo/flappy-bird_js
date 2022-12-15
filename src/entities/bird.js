@@ -23,9 +23,13 @@ export default class Bird extends Entity {
         this._endY = this.y + this.height
 
         if ((this._endY >= this._game.height) // при достижении земли
-        || ((((this._endX >= this._game.tube.x) && (this._endX < (this._game.tube.x + this._game.tube.width)))
-         && (this._endY === this._game.tube.y))
-            //|| (this.x + this.width === this._game.tube.xUp) 
+//        || ((((this._endX >= this._game.tube.x) && (this._endX < (this._game.tube.x + this._game.tube.width)))
+//         && (this.y - this.height <= this._game.tube.y))
+            //|| (this.x + this.width === this._game.tube.xUp)
+            || ((this._endX >= this._game.tube.x)
+                && (this.x < this._game.tube.x + this._game.tube.width)
+                && (this.y < this._game.tube.y + this._game.tube.height)
+                && (this.height + this.y > this._game.tube.y)
              )) {
             this._game.defeat();
         }

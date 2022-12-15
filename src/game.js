@@ -228,42 +228,22 @@ export default class Game {
         this.reset() //создаем сущности
 
         if (this._first) {
-
             this._drawSource.clear() //очищаем экран
-
             this._control.subscribe() //подключаем управление
 
             this.draw() //отрисовываем основную часть, затем кнопку 
             this._button.draw()
-            //привязываем к кнопке функцию рестарта игры
-            this._canvas.onclick = restart
-
-            this._start.draw() // и стартовую картинку
-        
+            this._start.draw() // и стартовую картинку  
         }
 
-        //привязываем к кнопке функцию рестарта игры
-        this._canvas.onclick = restart
-
-        // для подсчета координат указателя при нажатии
-        //let canvCoords = this._canvas.getBoundingClientRect();
-        
-        //сохраняем this для использования контекста в локальной функции
-        let self = this
-        //console.log("работает метод")
-        //функция, которая перезапускает игру
-        function restart (event) {
-            //сравниваем координаты указателя для совпадения с кнопкой
-            if (event.clientX - self._canvCoords.left >= self._button.x 
-                && event.clientX - self._canvCoords.left < self._button.x + self._button.width
-                && event.clientY - self._canvCoords.top >= self._button.y
-                && event.clientY - self._canvCoords.top < self._button.y + self._button.height) {
-                    //и перезапускаем игру
-                    //console.log("работает внутренняя функция")
-                    self.restart()                
+        //сравниваем координаты указателя для совпадения с кнопкой
+        if (event.clientX - this._canvCoords.left >= this._button.x 
+            && event.clientX - this._canvCoords.left < this._button.x + this._button.width
+            && event.clientY - this._canvCoords.top >= this._button.y
+            && event.clientY - this._canvCoords.top < this._button.y + this._button.height) {
+            //и перезапускаем игру
+                this.restart()
             }
-        }
-
     }
 
 
@@ -271,8 +251,6 @@ export default class Game {
     defeat() {
         
         this._playing = false;
-        //this.reset()
-        //this._control.subscribe()
 
         this._score.draw()
         this.medal.draw()
