@@ -23,14 +23,20 @@ export default class Game {
 
         this.width = this._config.canvas.width;
         this.height = this._config.canvas.height - this._config.ground.height+7;
-        
+        this._first = true
 
         this._drawSource = new CanvasDrawSource({ canvas: this._canvas });
         this._physicSource = new PhysicSource({gravity: this._config.gravity});
         this._resourceLoader = new ResourceLoader();
         this._control = new MouseInputHandler({
             left:({x, y}) => {
-                this._bird.flap()
+                if (this._playing) {
+                    this._bird.flap()
+                } else if (this._first) {
+                    this.start()
+                } else {
+                    this.restart()
+                }
             }
         })
 
@@ -169,7 +175,6 @@ export default class Game {
         this._ground.update(delta)
         this.tube.update(delta)
         this._score.update()
-        //this.medal.update()
     }
 
     draw() {
@@ -177,8 +182,6 @@ export default class Game {
         this.tube.draw()
         this._ground.draw()       
         this._bird.draw()
-        //this._start.draw()
-
     }
 
     _loop() {
@@ -203,22 +206,73 @@ export default class Game {
         
     }
 
-    start() {
+    restart() {
         //setTimeout(function() {this._playing = true;}, 5000)
 
-        
+        this._first = false
+        //self._canvas.onclick = self.flap
+        this._canvas.onclick = null
         this._playing = true;
-        this._control.subscribe()
+        
+        //setTimeout(self._control.subscribe(), 3000)
+        //this._control.subscribe()
+        delete self._button;
         this._lastUpdate = Date.now()
         this.reset()
         this._loop()
+        
+        // this._playing = true;
+        // this._control.subscribe()
+        // this._lastUpdate = Date.now()
+        // this.reset()
+        // this._loop()
     }
 
-    restart() {
-        //сохраняем this для использования контекста в локальной функции
-        let self = this
+    start() {
+        //создаем сущности
+        this.reset()
+
+        //очищаем экран
+        this._drawSource.clear()
+
+        //подключаем управление
+        this._control.subscribe()
+
+        //отрисовываем основную часть, затем кнопку и стартовую карт-ку
+        this.draw()
+        // this._back.draw()
+        // this.tube.draw()
+        // this._ground.draw() 
+
+        this._button.draw()
+        //привязываем к кнопке функцию рестарта игры
+        this._canvas.onclick = restart
+
+        //if (this._first) {
+            this._start.draw()
+        //}
+        //this._drawSource.clear()
+
+        //this.prepare().then(() => {
+            // delete this._button;
+            // this._playing = true;
+            // setTimeout(this._control.subscribe(), 3000)
+            // //self._control.subscribe()
+            // this._lastUpdate = Date.now()
+       /// })
         // для подсчета координат указателя при нажатии
         let canvCoords = this._canvas.getBoundingClientRect();
+        
+        // if (event.clientX - canvCoords.left >= self._button.x 
+        //     && event.clientX - canvCoords.left < self._button.x + self._button.width
+        //     && event.clientY - canvCoords.top >= self._button.y
+        //     && event.clientY - canvCoords.top < self._button.y + self._button.height) {
+                        
+        // }
+
+        //сохраняем this для использования контекста в локальной функции
+        let self = this
+        console.log("работает метод")
         //функция, которая перезапускает игру
         function restart (event) {
             //сравниваем координаты указателя для совпадения с кнопкой
@@ -227,27 +281,37 @@ export default class Game {
                 && event.clientY - canvCoords.top >= self._button.y
                 && event.clientY - canvCoords.top < self._button.y + self._button.height) {
                     //и перезапускаем игру
-                    self.prepare().then(() => {
-                        self.start()
-                })
+                    console.log("работает внутренняя функция")
+                    self.restart()
+                    // self._first = false
+
+                    //     self._canvas.onclick = null
+                    //     self._playing = true;
+                        
+                    //     //setTimeout(self._control.subscribe(), 3000)
+                    //     self._control.subscribe()
+                    //     delete self._button;
+                    //     self._lastUpdate = Date.now()
+                    //     self.reset()
+                    //     self._loop()
+                    
             }
         }
 
-        this._canvas.addEventListener("click", restart)
     }
 
+
+
     defeat() {
-        this._playing = false; // added
+        
+        this._playing = false;
+        this.reset()
+        this._control.subscribe()
 
         this._score.draw()
         this.medal.draw()
         this._button.draw()
-        this.restart()
-        //this._score.fillText({x, y, text, font })
 
-        //alert(`The end: ${this._score}`)
-        //вместо алерта нарисовать экран с надписью окончания игры
-        // и количеством очков, лучшим результатом
     }
 }
 

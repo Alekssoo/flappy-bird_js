@@ -23,7 +23,8 @@ export default class Tube extends Entity {
         this._drawSource.drawImage({
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex+1], 
-            x: this.xUp, 
+            // x: this.xUp, 
+            x: this.x,
             y: this.yUp, 
             width: this.width, 
             height: this.height
@@ -32,7 +33,8 @@ export default class Tube extends Entity {
         this._drawSource.drawImage({
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex+1], 
-            x: this.xUp + this.width * 6, 
+            // x: this.xUp + this.width * 6,
+            x: this.x + this.width * 5,  
             y: this.yUp, 
             width: this.width, 
             height: this.height
