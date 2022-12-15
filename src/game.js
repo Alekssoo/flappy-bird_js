@@ -305,8 +305,8 @@ export default class Game {
     defeat() {
         
         this._playing = false;
-        this.reset()
-        this._control.subscribe()
+        //this.reset()
+        //this._control.subscribe()
 
         this._score.draw()
         this.medal.draw()
