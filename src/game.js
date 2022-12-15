@@ -35,7 +35,7 @@ export default class Game {
                 } else if (this._first) {
                     this.start()
                 } else {
-                    this.restart()
+                    this.start()
                 }
             }
         })
@@ -207,72 +207,46 @@ export default class Game {
     }
 
     restart() {
-        //setTimeout(function() {this._playing = true;}, 5000)
 
-        this._first = false
-        //self._canvas.onclick = self.flap
-        this._canvas.onclick = null
-        this._playing = true;
+        this._first = false // отмечаем, что уже начали игру
+        this._canvas.onclick = null // убираем реакцию по клику на кнопку
+        this._playing = true; //запускаем
         
-        //setTimeout(self._control.subscribe(), 3000)
-        //this._control.subscribe()
-        delete self._button;
-        this._lastUpdate = Date.now()
-        this.reset()
-        this._loop()
+        delete self._button; //убираем саму кнопку
+        this._lastUpdate = Date.now() //фиксируем текущее время
+        this.reset() //создаем сущности
+        this._loop() // и запускаем игровой цикл
         
-        // this._playing = true;
-        // this._control.subscribe()
-        // this._lastUpdate = Date.now()
-        // this.reset()
-        // this._loop()
+
     }
 
     start() {
-        //создаем сущности
-        this.reset()
+        this.reset() //создаем сущности
 
-        //очищаем экран
-        this._drawSource.clear()
+        if (this._first) {
 
-        //подключаем управление
-        this._control.subscribe()
+            this._drawSource.clear() //очищаем экран
 
-        //отрисовываем основную часть, затем кнопку и стартовую карт-ку
-        this.draw()
-        // this._back.draw()
-        // this.tube.draw()
-        // this._ground.draw() 
+            this._control.subscribe() //подключаем управление
 
-        this._button.draw()
+            this.draw() //отрисовываем основную часть, затем кнопку 
+            this._button.draw()
+            //привязываем к кнопке функцию рестарта игры
+            this._canvas.onclick = restart
+
+            this._start.draw() // и стартовую картинку
+        
+        }
+
         //привязываем к кнопке функцию рестарта игры
         this._canvas.onclick = restart
 
-        //if (this._first) {
-            this._start.draw()
-        //}
-        //this._drawSource.clear()
-
-        //this.prepare().then(() => {
-            // delete this._button;
-            // this._playing = true;
-            // setTimeout(this._control.subscribe(), 3000)
-            // //self._control.subscribe()
-            // this._lastUpdate = Date.now()
-       /// })
         // для подсчета координат указателя при нажатии
         let canvCoords = this._canvas.getBoundingClientRect();
         
-        // if (event.clientX - canvCoords.left >= self._button.x 
-        //     && event.clientX - canvCoords.left < self._button.x + self._button.width
-        //     && event.clientY - canvCoords.top >= self._button.y
-        //     && event.clientY - canvCoords.top < self._button.y + self._button.height) {
-                        
-        // }
-
         //сохраняем this для использования контекста в локальной функции
         let self = this
-        console.log("работает метод")
+        //console.log("работает метод")
         //функция, которая перезапускает игру
         function restart (event) {
             //сравниваем координаты указателя для совпадения с кнопкой
@@ -281,20 +255,8 @@ export default class Game {
                 && event.clientY - canvCoords.top >= self._button.y
                 && event.clientY - canvCoords.top < self._button.y + self._button.height) {
                     //и перезапускаем игру
-                    console.log("работает внутренняя функция")
-                    self.restart()
-                    // self._first = false
-
-                    //     self._canvas.onclick = null
-                    //     self._playing = true;
-                        
-                    //     //setTimeout(self._control.subscribe(), 3000)
-                    //     self._control.subscribe()
-                    //     delete self._button;
-                    //     self._lastUpdate = Date.now()
-                    //     self.reset()
-                    //     self._loop()
-                    
+                    //console.log("работает внутренняя функция")
+                    self.restart()                
             }
         }
 
