@@ -16,21 +16,22 @@ export default class Bird extends Entity {
         this._physicSource.update(this, delta);
 
         if (this.y < 0) {
-            this.y = 0
+            this.y = 0 // при столкновении с потолком возвращаем птичку вниз
         }
         
         this._endX = this.x + this.width
         this._endY = this.y + this.height
         //условия для столкновения птички и поражения
         if ((this._endY >= this._game.height) // при достижении земли
-//        || ((((this._endX >= this._game.tube.x) && (this._endX < (this._game.tube.x + this._game.tube.width)))
-//         && (this.y - this.height <= this._game.tube.y))
-            //|| (this.x + this.width === this._game.tube.xUp)
+                //общее условие столкновения с любой трубой
             || ((this._endX >= this._game.tube.x)
                 && (this.x < this._game.tube.x + this._game.tube.width)
-                && ((this.y < this._game.tube.y + this._game.tube.height) || (this.y < this._game.tube.y + this._game.tube.height))
-                && (this.height + this.y > this._game.tube.y)
-             )) {
+                //столкновение с нижней трубой
+                && (((this.height + this.y > this._game.tube.y)
+                && (this.y < this._game.tube.y + this._game.tube.height))
+                // или с верхней трубой 
+                || (this.y < this._game.tube.yUp + this._game.tube.height)))
+             ) {
             this._game.defeat();
         }
     }

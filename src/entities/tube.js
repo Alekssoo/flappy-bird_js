@@ -3,7 +3,7 @@ import Entity from "./base.js";
 export default class Tube extends Entity {
     constructor(params) {
         super (params)
-        this.xUp = this.width + 20
+        //this.xUp = this.x
         this.yUp = 0
     }
 
@@ -51,12 +51,12 @@ export default class Tube extends Entity {
         }
 
         if (this.xUp < -this.width) {
-            this.xUp = this.width * 5
+            this.xUp = this.width * 4
         }
 
         //плавно изменяем X для эффекта движения
         this.x -= Math.ceil(delta * this.animationSpeed);
-        this.xUp -= Math.ceil(delta * this.animationSpeed);
+        //this.xUp -= Math.ceil(delta * this.animationSpeed);
         
 
     }
