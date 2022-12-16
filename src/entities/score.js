@@ -3,7 +3,7 @@ import Entity from "./base.js";
 export default class Score extends Entity {
     constructor(params) {
         super (params)
-        this._result = 0
+        this.result = 0
         this._best = localStorage.getItem("best") || 0
         this._resX = params.resX
         this._resY = params.resY
@@ -11,7 +11,6 @@ export default class Score extends Entity {
         this._bestY = params.bestY
         this._font = params.font
         this._color = params.color
-        this._index = 0
     }
 
     draw() {
@@ -19,7 +18,7 @@ export default class Score extends Entity {
         super.draw()
         // и прописываем заработанные баллы
         this._drawSource.fillText({
-            text: String(this._result),
+            text: String(this.result),
             font: this._font,
             color: this._color,
             x: this._resX,
@@ -38,23 +37,11 @@ export default class Score extends Entity {
     }
 
      update() { 
-        this._index++;
-        if (this._index === 50) {
-            this._result += 10;
-            this._index = 0
-        }
+        this.result += 10;
         
-        if (this._result > this._best) {
+        if (this.result > this._best) {
             localStorage.setItem("best", this._result)
         }
-        
-        if (this._result === 50 && this._index === 0) {
-            this._game.medal.update()
-        } else if (this._result === 200 && this._index === 0) {
-            this._game.medal.update()
-        } else if (this._result === 500 && this._index === 0) {
-            this._game.medal.update()
-        } 
 
      }
 

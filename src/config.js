@@ -141,16 +141,16 @@ export default class Config {
         //рисуем на канвасе по этим координатам
         x: this.canvas.width * 0.4,
         y: this.canvas.height * 0.82, 
-        width: 81,
-        height: 27,
+        width: 82,
+        height: 28,
 
         frames:[
             // забираем из спрайта с этими координатами
             {
                 x: 246,
                 y: 400,
-                w: 81,
-                h: 27,
+                w: 82,
+                h: 28,
 
             },]
     }
@@ -170,7 +170,15 @@ export default class Config {
                 w: 226,
                 h: 161,
 
-            },],
+            },
+            {
+                x: 328,
+                y: 286,
+                w: 60,
+                h: 96,
+
+            },
+        ],
 
         font: "18px Verdana",
         color: "green"

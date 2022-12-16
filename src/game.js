@@ -157,7 +157,7 @@ export default class Game {
             color: this._config.score.color,
         })
 
-        this.medal = new Medal({
+        this._medal = new Medal({
             x: this._config.medal.x,
             y: this._config.medal.y,
             width: this._config.medal.width,
@@ -178,7 +178,16 @@ export default class Game {
         this._back.update(delta)
         this._ground.update(delta)
         this.tube.update(delta)
-        this._score.update()
+        if (this._bird.x === this.tube.x + this.tube.width) {
+            this._score.update()
+            if (this._score.result === 50
+                || this._score.result === 200
+                || this._score.result === 500) {
+                 this._medal.update()
+             } 
+        }
+
+
     }
 
     draw() {
@@ -186,6 +195,8 @@ export default class Game {
         this.tube.draw()
         this._ground.draw()       
         this._bird.draw()
+        //this._score._frameIndex = 1
+        //this._score.draw()
     }
 
     _loop() {
@@ -219,6 +230,7 @@ export default class Game {
         delete self._button; //убираем саму кнопку
         this._lastUpdate = Date.now() //фиксируем текущее время
         this.reset() //создаем сущности
+        //this._score.update()
         this._loop() // и запускаем игровой цикл
         
 
@@ -253,7 +265,7 @@ export default class Game {
         this._playing = false;
 
         this._score.draw()
-        this.medal.draw()
+        this._medal.draw()
         this._button.draw()
 
     }
