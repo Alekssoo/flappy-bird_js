@@ -82,7 +82,7 @@ export default class Config {
         x: 50, 
         y: 120,
         width: 34,
-        height: 26,
+        height: 25,
 
         speedFlap: 5,
 
@@ -90,30 +90,30 @@ export default class Config {
         frames:[
             {
                 x: 276,
-                y: 112,
+                y: 114,
                 w: 34,
-                h: 26,
+                h: 25,
 
             },
             {
                 x: 276,
                 y: 139,
                 w: 34,
-                h: 26,
+                h: 25,
 
             },                
             {
                 x: 276,
-                y: 164,
+                y: 165,
                 w: 34,
-                h: 26,
+                h: 25,
 
             },
             {
                 x: 276,
                 y: 139,
                 w: 34,
-                h: 26,
+                h: 25,
 
             },  
         ]
