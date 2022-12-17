@@ -104,7 +104,7 @@ export default class Tube extends Entity {
         // }
 
         //плавно изменяем X для эффекта движения
-        this.x -= Math.ceil(delta * this.animationSpeed * 2);
+        this.x -= Math.ceil(delta * this.animationSpeed * 50);
         //this.draw()
         //this.xUp -= Math.ceil(delta * this.animationSpeed);
         
