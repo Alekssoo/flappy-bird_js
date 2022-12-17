@@ -1,8 +1,8 @@
 export default class Config {
     gravity = 30
 
-    animationSpeed = 3.1
-
+   // animationSpeed = 3.1
+    animationSpeed = 4
     canvas = {
         class: ".game",
         width: 480,
@@ -54,16 +54,16 @@ export default class Config {
     tube = {
         //рисуем на канвасе по этим координатам
         x: this.canvas.width/2 + 20, 
-        y: this.canvas.height - 113,
-        width: 50,
-        height: 113,
+        y: this.canvas.height - 120,
+        width: 40,
+        height: 120,
 
         frames:[// забираем из спрайта с этими координатами
             {
                 x: 502,
                 y: 0,
                 w: 52,
-                h: 113,
+                h: 120,
 
             },
             {
@@ -81,8 +81,10 @@ export default class Config {
         //рисуем на канвасе по этим координатам
         x: 50, 
         y: 120,
-        width: 34,
-        height: 25,
+        // width: 34,
+        // height: 25,
+        width: 20,
+        height: 15,
 
         speedFlap: 5,
 
@@ -171,13 +173,13 @@ export default class Config {
                 h: 161,
 
             },
-            {
-                x: 328,
-                y: 286,
-                w: 60,
-                h: 96,
+            // {
+            //     x: 328,
+            //     y: 286,
+            //     w: 60,
+            //     h: 96,
 
-            },
+            // },
         ],
 
         font: "18px Verdana",
