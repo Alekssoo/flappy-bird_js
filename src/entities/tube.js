@@ -13,35 +13,35 @@ export default class Tube extends Entity {
         super.draw()
         
          //отрисовываем след. нижнюю трубу
+        //let self = this
+        for (let i = 1; i < 100; i++) {
+            if (this._frameIndex % 2 === 0) {
+                this._drawSource.drawImage({ 
+                    spriteSheet: this._spriteSheet, 
+                    image: this._frames[this._frameIndex], 
+                    x: this.x + (this.width * this.animationSpeed * i), 
+                    y: this.y, 
+                    width: this.width, 
+                    height: this.height 
+                    })
+            }
+        }
 
-         for (let i = 1; i < 100; i++) {
-            //while (true) {
-                
+        //this._frameIndex++;
+        // пока верхние не будут рисоваться, т.к. frameindex не меняется
+        for (let i = 0; i < 100; i++) {
+            if (this._frameIndex % 2 != 0) {
             this._drawSource.drawImage({
-                
                 spriteSheet: this._spriteSheet, 
-                image: this._frames[this._frameIndex], 
+                //image: this._frames[this._frameIndex+1],
+                image: this._frames[this._frameIndex],  
                 x: this.x + (this.width * this.animationSpeed * i), 
-                y: this.y, 
+                y: this.yUp, 
                 width: this.width, 
                 height: this.height
                 })
             }
-
-            
-            for (let i = 0; i < 100; i++) {
-                //while (true) {
-                    
-                this._drawSource.drawImage({
-                    
-                    spriteSheet: this._spriteSheet, 
-                    image: this._frames[this._frameIndex+1], 
-                    x: this.x + (this.width * this.animationSpeed * i), 
-                    y: this.yUp, 
-                    width: this.width, 
-                    height: this.height
-                    })
-                }
+            }
          //}
         // this._drawSource.drawImage({
         //     spriteSheet: this._spriteSheet, 
