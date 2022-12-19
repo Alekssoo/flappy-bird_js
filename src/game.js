@@ -39,7 +39,7 @@ export default class Game {
                     && y < this._canvCoords.top + this._canvas.height) {
                         this._bird.flap() } //птичка машет
                 } else { //если игра не идет, то при клике 
-                    this.start() // на кнопку рестарт
+                    this.start() // ЛКМ на кнопку рестарт
                 }
             }
         })
@@ -178,7 +178,8 @@ export default class Game {
         this._back.update(delta)
         this._ground.update(delta)
         this.tube.update(delta)
-        if (this._bird.x === this.tube.x + this.tube.width) {
+        if (this._bird.x >= this.tube.x + this.tube.width/2
+            && this._bird.x <= this.tube.x + this.tube.width/2 + 3) {
             this._score.update()
             if (this._score.result === 50
                 || this._score.result === 200
@@ -202,6 +203,7 @@ export default class Game {
     _loop() {
         const now = Date.now()
         const delta = now - this._lastUpdate
+        //console.log ("Delta - ", delta)
         this.update(delta / 1000)
 
         if (this._playing) {

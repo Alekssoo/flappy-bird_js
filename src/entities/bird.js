@@ -12,6 +12,7 @@ export default class Bird extends Entity {
 
     update(delta) {
         super.update(delta)
+        //console.log(`(${this._frameIndex} + ${Math.ceil(delta)}) % ${this._frames.length}`)
 
         this._physicSource.update(this, delta);
 
@@ -21,6 +22,8 @@ export default class Bird extends Entity {
         
         this._endX = this.x + this.width
         this._endY = this.y + this.height
+
+        //console.log("Птичка ", this.x)
         //условия для столкновения птички и поражения
         if ((this._endY >= this._game.height) // при достижении земли
                 //общее условие столкновения с любой трубой
@@ -28,10 +31,10 @@ export default class Bird extends Entity {
                 && (this.x < this._game.tube.x + this._game.tube.width)
                 //столкновение с нижней трубой
                 && (((this.height + this.y > this._game.tube.y)
-                && (this.y < this._game.tube.y + this._game.tube.height))
+                && (this.y < this._game.tube.y + this._game.tube.height)))
                 // или с верхней трубой 
-                || (this.y < this._game.tube.yUp + this._game.tube.height)))
-             ) {
+                //|| (this.y < this._game.tube.yUp + this._game.tube.height)))
+             )) {
             this._game.defeat();
         }
     }
@@ -39,4 +42,6 @@ export default class Bird extends Entity {
     flap() {
         this.speed = -this._speedFlap * 5; //добавил умножение для нормальной скорости изменения высоты птички
     }
+
+
 }
