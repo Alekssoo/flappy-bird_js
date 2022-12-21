@@ -125,17 +125,20 @@ export default class Game {
                 game: this,
                 animationSpeed: this._config.animationSpeed,
         })
+
         this.tube = new Tube({
                 x: this._config.tube.x,
                 y: this._config.tube.y,
                 width: this._config.tube.width,
                 height: this._config.tube.height,
                 frames: this._config.tube.frames,
+                gap: this._config.tube.gap,
+                sourceHeight: this._config.tube.sourceHeight,
                 spriteSheet: this._spriteSheet,
                 physicSource: this._physicSource,
                 drawSource: this._drawSource,
                 game: this,
-                animationSpeed: this._config.animationSpeed,
+                animationSpeed: this._config.animationSpeed, 
         })
 
         this._score = new Score({

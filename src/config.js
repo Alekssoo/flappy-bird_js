@@ -53,10 +53,12 @@ export default class Config {
 
     tube = {
         //рисуем на канвасе по этим координатам
-        x: this.canvas.width/2 + 20, 
-        y: this.canvas.height - 120,
+        x: this.canvas.width, //this.canvas.width/2 + 20, 
+        y:  this.canvas.height - 120,
         width: 40,
         height: 120,
+        gap: (this.canvas.height - this.ground.height)/4,
+        sourceHeight: this.backGround.height - 40,
 
         frames:[// забираем из спрайта с этими координатами
             {
@@ -64,6 +66,13 @@ export default class Config {
                 y: 0,
                 w: 52,
                 h: 120,
+
+            },
+            {//тест от верхней трубы
+                x: 554,
+                y: 287,
+                w: 52,
+                h: 113,
 
             },
             {

@@ -1,9 +1,21 @@
-body {
+.body {
     margin: 0;
-    text-align: center;
+    /* text-align: center; */
+    
   }
 
 header {
-margin: 0 auto;
-width: 431px;
+  margin: 0 auto;
+  width: 431px;
+}
+
+.canv-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  /* text-align: center; */
+  min-height: 320px;
+  height: 100vh;
 }

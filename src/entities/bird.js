@@ -25,16 +25,17 @@ export default class Bird extends Entity {
 
         //console.log("Птичка ", this.x)
         //условия для столкновения птички и поражения
+        // изменить условия под массивы труб для координаты x
         if ((this._endY >= this._game.height) // при достижении земли
                 //общее условие столкновения с любой трубой
             || ((this._endX >= this._game.tube.x)
                 && (this.x < this._game.tube.x + this._game.tube.width)
                 //столкновение с нижней трубой
                 && (((this.height + this.y > this._game.tube.y)
-                && (this.y < this._game.tube.y + this._game.tube.height)))
+                && (this.y < this._game.tube.y + this._game.tube.height))
                 // или с верхней трубой 
-                //|| (this.y < this._game.tube.yUp + this._game.tube.height)))
-             )) {
+                || (this.y < this._game.tube.tubesUp[this._game.tube.index].height)))
+             ) {
             this._game.defeat();
         }
     }
