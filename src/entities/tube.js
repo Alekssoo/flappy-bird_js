@@ -12,7 +12,7 @@ export default class Tube extends Entity {
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex+1], 
             x: this.x,
-            y: 0,
+            y: -this.height/2,
             width: this.width, 
             height: this.height  
         }]
@@ -23,8 +23,10 @@ export default class Tube extends Entity {
             x: this.x,
             y: this.tubesUp[0].y + this.tubesUp[0].height + this._gap,
             width: this.width, 
-            height: this.height  
-        }]
+            height: this.height //50 + 80 + this.height - (this.tubesUp[0].height + this.tubesUp[0].y + this._gap)  
+        }] // прибавил в начале высоты высоту земли и мин. высоту трубы
+        // для вычитания вт и зазора из полной высоты канваса
+        // мин. высоту нужно сделать постоянным параметром трубы, а высоту земли ?
 
         
 
@@ -158,11 +160,11 @@ export default class Tube extends Entity {
         // }
 
         //this.x -= Math.ceil(delta * this.animationSpeed * 120); 
-        this.tubes[this.index].x -= Math.ceil(delta * this.animationSpeed * 120);
+        this.tubes[this.index].x -= Math.ceil(delta * this.animationSpeed * 70); //120 - множитель ранее
         this.tubesUp[this.index].x = this.tubes[this.index].x
 
         if ((this.tubes[this.index-1]) && (this.tubesUp[this.index-1])) {
-            this.tubes[this.index-1].x -= Math.ceil(delta * this.animationSpeed * 120);
+            this.tubes[this.index-1].x -= Math.ceil(delta * this.animationSpeed * 70);
             this.tubesUp[this.index-1].x = this.tubes[this.index-1].x
         }
         // =============================
@@ -187,15 +189,17 @@ export default class Tube extends Entity {
             // this.y += preHeight - this.height
         // }
 
-        if ((this.tubes[this.index].x >= this.width*4) && (this.tubes[this.index].x <= this.width*4 + 5)) {
+        if ((this.tubes[this.index].x >= this.width*4) 
+        && (this.tubes[this.index].x <= this.width*4 + 7)) {
+            let yRandom = Math.floor(Math.random() * (this._sourceHeight - 90 + 1) + 90) - this._sourceHeight
             this.tubesUp.push(
                 {
                     spriteSheet: this._spriteSheet, 
-                    image: this._frames[this._frameIndex], 
+                    image: this._frames[this._frameIndex + 1], 
                     x: this.x,
-                    y: Math.floor(Math.random() * this._sourceHeight) - this._sourceHeight,
+                    y: yRandom,
                     width: this.width, 
-                    height: this.height  
+                    height: this.height// + yRandom //this.height  
                 })
             
             this.tubes.push(
@@ -203,16 +207,19 @@ export default class Tube extends Entity {
                     spriteSheet: this._spriteSheet, 
                     image: this._frames[this._frameIndex], 
                     x: this.x,
-                    y: this.tubesUp[this.index].y + this.tubesUp[this.index].height + this._gap,
+                    y: yRandom + this.tubesUp[this.index].height + this._gap,
                     width: this.width, 
-                    height: this.height  
+                    height: this.height //50 + 80 + this._sourceHeight - (this.tubesUp[this.index].height + yRandom + this._gap)  
                 }
             )
-                let tempy = Math.random() * this._sourceHeight
-                console.log("рандом = ", tempy)
-                console.log("результат с округлением", Math.floor(tempy))
-                console.log("y = ", this.tubes[this.index+1].y)
-
+                //let tempy = Math.random() * this._sourceHeight
+                //console.log("рандом = ", tempy)
+                //console.log("результат с округлением", Math.floor(tempy))
+                console.log("y вт = ", this.tubesUp[this.index+1].y)
+                console.log("высота вт = ", this.tubesUp[this.index+1].y + this.tubesUp[this.index+1].height) 
+                console.log("y нт = ", this.tubes[this.index+1].y)
+                console.log("высота нт = ", this.tubes[this.index+1].height)
+                
             //console.log(this.tubes)
             
         }

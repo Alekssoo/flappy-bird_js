@@ -48,7 +48,7 @@ export default class Bird extends Entity {
             && (((this._endY > this._game.tube.tubes[this._game.tube.index].y)
             && (this.y < this._game.tube.tubes[this._game.tube.index].y + this._game.tube.tubes[this._game.tube.index].height))
         // или с верхней трубой 
-            || (this.y < this._game.tube.tubesUp[this._game.tube.index].height)))
+            || (this.y < this._game.tube.tubesUp[this._game.tube.index].height + this._game.tube.tubesUp[this._game.tube.index].y)))
         ) {
             this._game.defeat();
         }

@@ -54,27 +54,41 @@ export default class Config {
     tube = {
         //рисуем на канвасе по этим координатам
         x: this.canvas.width, //this.canvas.width/2 + 20, 
-        y:  this.canvas.height - 120,
+        y:  this.canvas.height - 180, // -120 ранее
         width: 40,
-        height: 120,
-        gap: (this.canvas.height - this.ground.height)/4,
-        sourceHeight: this.backGround.height - 40,
+        height: 180, //120-ранее
+        gap: Math.ceil((this.canvas.height - this.ground.height)/4),
+        sourceHeight: this.backGround.height - this.ground.height - 90,
 
         frames:[// забираем из спрайта с этими координатами
             {
                 x: 502,
                 y: 0,
                 w: 52,
-                h: 120,
+                h: 180,
 
             },
             {//тест от верхней трубы
                 x: 554,
-                y: 287,
+                y: 220,
                 w: 52,
-                h: 113,
+                h: 180,
 
             },
+            // резерв {
+            //     x: 502,
+            //     y: 0,
+            //     w: 52,
+            //     h: 120,
+
+            // },
+            // {//тест от верхней трубы
+            //     x: 554,
+            //     y: 287,
+            //     w: 52,
+            //     h: 113,
+
+            // },
             {
                 x: 502,
                 y: 0,
