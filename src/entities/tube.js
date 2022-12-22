@@ -217,7 +217,7 @@ export default class Tube extends Entity {
             
         }
 
-        if (this.tubes[this.index].x < -this.width) {
+        if ((this.tubes[this.index].x < -this.width) && this.tubes[this.index+1]) {
             this.index++
         }
 
