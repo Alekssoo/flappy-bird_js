@@ -40,9 +40,22 @@ export default class Tube extends Entity {
         this._drawSource.drawImage(this.tubes[this.index])
         this._drawSource.drawImage(this.tubesUp[this.index])
 
-        if ((this.tubes[this.index].x >= this.width*4) && (this.tubes[this.index].x <= this.width*4 + 5)) {
+        if ((this.tubes[this.index+1]) && (this.tubesUp[this.index+1])) {
             this._drawSource.drawImage(this.tubes[this.index+1])
             this._drawSource.drawImage(this.tubesUp[this.index+1])
+            //console.log(this.tubes[this.index+1])
+        }
+
+        if ((this.tubes[this.index-1]) && (this.tubesUp[this.index-1])) {
+            this._drawSource.drawImage(this.tubes[this.index-1])
+            this._drawSource.drawImage(this.tubesUp[this.index-1])
+            //console.log(this.tubes[this.index+1])
+        }
+
+        if ((this.tubes[this.index-2]) && (this.tubesUp[this.index-2])) {
+            this._drawSource.drawImage(this.tubes[this.index-2])
+            this._drawSource.drawImage(this.tubesUp[this.index-2])
+            //console.log(this.tubes[this.index+1])
         }
 
 
@@ -148,12 +161,18 @@ export default class Tube extends Entity {
         this.tubes[this.index].x -= Math.ceil(delta * this.animationSpeed * 120);
         this.tubesUp[this.index].x = this.tubes[this.index].x
 
-        if (this.tubes[this.index+1] && this.tubesUp[this.index+1]){
-            this.tubes[this.index+1].x = this.x
-            this.tubesUp[this.index+1].x = this.x
+        if ((this.tubes[this.index-1]) && (this.tubesUp[this.index-1])) {
+            this.tubes[this.index-1].x -= Math.ceil(delta * this.animationSpeed * 120);
+            this.tubesUp[this.index-1].x = this.tubes[this.index-1].x
         }
+        // =============================
+        // if (this.tubes[this.index+1] && this.tubesUp[this.index+1]){
+        //     this.tubes[this.index+1].x = this.x
+        //     this.tubesUp[this.index+1].x = this.x
+        // }
+        // ==============================
 
-        if (this.x < -this.width) {
+        // if (this.x < -this.width) {
             //console.log("height - ", this.height)
             //console.log("frame h - ", this._frames[this._frameIndex].h)
 
@@ -166,10 +185,10 @@ export default class Tube extends Entity {
             // let preHeight = this.height
             // this.height = this._frames[this._frameIndex].h
             // this.y += preHeight - this.height
-        }
+        // }
 
         if ((this.tubes[this.index].x >= this.width*4) && (this.tubes[this.index].x <= this.width*4 + 5)) {
-            this.tubes.push(
+            this.tubesUp.push(
                 {
                     spriteSheet: this._spriteSheet, 
                     image: this._frames[this._frameIndex], 
@@ -177,22 +196,29 @@ export default class Tube extends Entity {
                     y: Math.floor(Math.random() * this._sourceHeight) - this._sourceHeight,
                     width: this.width, 
                     height: this.height  
-                }
-            )
-
-            this.tubesUp.push(
+                })
+            
+            this.tubes.push(
                 {
                     spriteSheet: this._spriteSheet, 
                     image: this._frames[this._frameIndex], 
                     x: this.x,
-                    y: this.y,
+                    y: this.tubesUp[this.index].y + this.tubesUp[this.index].height + this._gap,
                     width: this.width, 
                     height: this.height  
                 }
             )
+                let tempy = Math.random() * this._sourceHeight
+                console.log("рандом = ", tempy)
+                console.log("результат с округлением", Math.floor(tempy))
+                console.log("y = ", this.tubes[this.index+1].y)
 
-            console.log(this.tubes)
+            //console.log(this.tubes)
             
+        }
+
+        if (this.tubes[this.index].x < -this.width) {
+            this.index++
         }
 
         // for(let i = 0; i < this.tubes.length; i++) {
