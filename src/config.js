@@ -1,5 +1,5 @@
 export default class Config {
-    gravity = 45 //было 30
+    gravity = 40 //было 30
 
    // animationSpeed = 3.1
     animationSpeed = 4
