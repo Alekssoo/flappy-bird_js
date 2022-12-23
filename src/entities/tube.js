@@ -173,16 +173,16 @@ export default class Tube extends Entity {
         //this.x -= Math.ceil(delta * this.animationSpeed * 120);
         
         //постоянное движение труб
-        this.tubes[this.index].x -= Math.ceil(delta * this.animationSpeed * 50); //120 - множитель ранее
+        this.tubes[this.index].x -= Math.ceil(delta * this.animationSpeed * 30); //120 - множитель ранее
         this.tubesUp[this.index].x = this.tubes[this.index].x
 
         if ((this.tubes[this.index-1]) && (this.tubesUp[this.index-1])) {
-            this.tubes[this.index-1].x -= Math.ceil(delta * this.animationSpeed * 50);
+            this.tubes[this.index-1].x -= Math.ceil(delta * this.animationSpeed * 30);
             this.tubesUp[this.index-1].x = this.tubes[this.index-1].x
         }
 
         if ((this.tubes[this.index-2]) && (this.tubesUp[this.index-2])) {
-            this.tubes[this.index-2].x -= Math.ceil(delta * this.animationSpeed * 50);
+            this.tubes[this.index-2].x -= Math.ceil(delta * this.animationSpeed * 30);
             this.tubesUp[this.index-2].x = this.tubes[this.index-2].x
         }
         // =============================

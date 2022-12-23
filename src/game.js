@@ -184,7 +184,7 @@ export default class Game {
         this.tube.update(delta)
         if (this.tube.tubes[this.tube.index-2]) {
         if (this._bird.x >= this.tube.tubes[this.tube.index-2].x + this.tube.width/2
-            && this._bird.x <= this.tube.tubes[this.tube.index-2].x + this.tube.width/2 + 5) {
+            && this._bird.x <= this.tube.tubes[this.tube.index-2].x + this.tube.width/2 + 3) {
             this._score.update()
             if (this._score.result === 50
                 || this._score.result === 200
