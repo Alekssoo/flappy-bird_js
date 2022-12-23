@@ -39,18 +39,20 @@ export default class Bird extends Entity {
         //      ) {
         //     this._game.defeat();
         // }
-
-        if ((this._endY >= this._game.height) // при достижении земли
-        //общее условие столкновения с любой трубой
-            || ((this._endX >= this._game.tube.tubes[this._game.tube.index].x)
-            && (this.x < this._game.tube.tubes[this._game.tube.index].x + this._game.tube.width)
-        //столкновение с нижней трубой
-            && (((this._endY > this._game.tube.tubes[this._game.tube.index].y)
-            && (this.y < this._game.tube.tubes[this._game.tube.index].y + this._game.tube.tubes[this._game.tube.index].height))
-        // или с верхней трубой 
-            || (this.y < this._game.tube.tubesUp[this._game.tube.index].height + this._game.tube.tubesUp[this._game.tube.index].y)))
-        ) {
+        
+        if (this._game.tube.tubes[this._game.tube.index-2] && this._game.tube.tubesUp[this._game.tube.index-2]) {
+            if ((this._endY >= this._game.height) // при достижении земли
+            //общее условие столкновения с любой трубой
+                || ((this._endX >= this._game.tube.tubes[this._game.tube.index-2].x)
+            && (this.x < this._game.tube.tubes[this._game.tube.index-2].x + this._game.tube.width)
+            //столкновение с нижней трубой
+                && (((this._endY > this._game.tube.tubes[this._game.tube.index-2].y)
+                && (this.y < this._game.tube.tubes[this._game.tube.index-2].y + this._game.tube.tubes[this._game.tube.index-2].height))
+            // или с верхней трубой 
+                || (this.y < this._game.tube.tubesUp[this._game.tube.index-2].height + this._game.tube.tubesUp[this._game.tube.index-2].y)))
+            ) {
             this._game.defeat();
+            }
         }
     }
 

@@ -6,13 +6,14 @@ export default class Tube extends Entity {
         //this.xStart = this.x
         //this.yUp = 0
         this._gap = params.gap // зазор между трубами
-        this._sourceHeight = params.sourceHeight //макс. высота верхн. трубы
+        //this._sourceHeight = params.sourceHeight //макс. высота верхн. трубы
+        this._minHeight = params.minHeight
         this.index = 0
         this.tubesUp = [{
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex+1], 
             x: this.x,
-            y: -this.height/2,
+            y: this.y,
             width: this.width, 
             height: this.height  
         }]
@@ -39,14 +40,24 @@ export default class Tube extends Entity {
         //super.draw()
         //console.log("x трубы = ", this.x)
         //console.log(this.tubes[this.index])
+
+
         this._drawSource.drawImage(this.tubes[this.index])
         this._drawSource.drawImage(this.tubesUp[this.index])
 
-        if ((this.tubes[this.index+1]) && (this.tubesUp[this.index+1])) {
-            this._drawSource.drawImage(this.tubes[this.index+1])
-            this._drawSource.drawImage(this.tubesUp[this.index+1])
-            //console.log(this.tubes[this.index+1])
-        }
+        // for(this.index = 0; this.index < this.tubes.length-1; this.index++) {
+        //     this._drawSource.drawImage(this.tubes[this.index])
+        // }
+
+        // for(this.index = 0; this.index < this.tubesUp.length-1; this.index++) {
+        //     this._drawSource.drawImage(this.tubesUp[this.index])
+        // }
+
+        // if ((this.tubes[this.index+1]) && (this.tubesUp[this.index+1])) {
+        //     this._drawSource.drawImage(this.tubes[this.index+1])
+        //     this._drawSource.drawImage(this.tubesUp[this.index+1])
+        //     //console.log(this.tubes[this.index+1])
+        // }
 
         if ((this.tubes[this.index-1]) && (this.tubesUp[this.index-1])) {
             this._drawSource.drawImage(this.tubes[this.index-1])
@@ -159,13 +170,20 @@ export default class Tube extends Entity {
         //     this.x = this.width * this.animationSpeed/1.5
         // }
 
-        //this.x -= Math.ceil(delta * this.animationSpeed * 120); 
-        this.tubes[this.index].x -= Math.ceil(delta * this.animationSpeed * 70); //120 - множитель ранее
+        //this.x -= Math.ceil(delta * this.animationSpeed * 120);
+        
+        //постоянное движение труб
+        this.tubes[this.index].x -= Math.ceil(delta * this.animationSpeed * 50); //120 - множитель ранее
         this.tubesUp[this.index].x = this.tubes[this.index].x
 
         if ((this.tubes[this.index-1]) && (this.tubesUp[this.index-1])) {
-            this.tubes[this.index-1].x -= Math.ceil(delta * this.animationSpeed * 70);
+            this.tubes[this.index-1].x -= Math.ceil(delta * this.animationSpeed * 50);
             this.tubesUp[this.index-1].x = this.tubes[this.index-1].x
+        }
+
+        if ((this.tubes[this.index-2]) && (this.tubesUp[this.index-2])) {
+            this.tubes[this.index-2].x -= Math.ceil(delta * this.animationSpeed * 50);
+            this.tubesUp[this.index-2].x = this.tubes[this.index-2].x
         }
         // =============================
         // if (this.tubes[this.index+1] && this.tubesUp[this.index+1]){
@@ -189,9 +207,10 @@ export default class Tube extends Entity {
             // this.y += preHeight - this.height
         // }
 
-        if ((this.tubes[this.index].x >= this.width*4) 
-        && (this.tubes[this.index].x <= this.width*4 + 7)) {
-            let yRandom = Math.floor(Math.random() * (this._sourceHeight - 90 + 1) + 90) - this._sourceHeight
+        //если труба проходит расстояние в 3 трубы, то добавляется следующая в массив
+        if ((this.tubes[this.index].x >= this.x - this.width*4.5) 
+        && (this.tubes[this.index].x <= this.x - this.width*4.5 + 5)) {
+            let yRandom = Math.floor(Math.random() * (this.height - this._minHeight + 1) + this._minHeight) - this.height
             this.tubesUp.push(
                 {
                     spriteSheet: this._spriteSheet, 
@@ -210,22 +229,21 @@ export default class Tube extends Entity {
                     y: yRandom + this.tubesUp[this.index].height + this._gap,
                     width: this.width, 
                     height: this.height //50 + 80 + this._sourceHeight - (this.tubesUp[this.index].height + yRandom + this._gap)  
-                }
+                }          
             )
-                //let tempy = Math.random() * this._sourceHeight
-                //console.log("рандом = ", tempy)
-                //console.log("результат с округлением", Math.floor(tempy))
-                console.log("y вт = ", this.tubesUp[this.index+1].y)
-                console.log("высота вт = ", this.tubesUp[this.index+1].y + this.tubesUp[this.index+1].height) 
-                console.log("y нт = ", this.tubes[this.index+1].y)
-                console.log("высота нт = ", this.tubes[this.index+1].height)
-                
-            //console.log(this.tubes)
+                // console.log("y вт = ", this.tubesUp[this.index+1].y)
+                // console.log("высота вт = ", this.tubesUp[this.index+1].y + this.tubesUp[this.index+1].height) 
+                // console.log("y нт = ", this.tubes[this.index+1].y)
+                // console.log("высота нт = ", this.tubes[this.index+1].height)
+            this.index++    
+            console.log(this.tubes)
             
         }
-
+        
+        // как только труба уходит за экран игры и при наличии следующей трубы
+        // в массиве текущий индекс переключается на следующий
         if ((this.tubes[this.index].x < -this.width) && this.tubes[this.index+1]) {
-            this.index++
+            //this.index++
         }
 
         // for(let i = 0; i < this.tubes.length; i++) {

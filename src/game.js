@@ -133,7 +133,8 @@ export default class Game {
                 height: this._config.tube.height,
                 frames: this._config.tube.frames,
                 gap: this._config.tube.gap,
-                sourceHeight: this._config.tube.sourceHeight,
+                //sourceHeight: this._config.tube.sourceHeight,
+                minHeight: this._config.tube.minHeight,
                 spriteSheet: this._spriteSheet,
                 physicSource: this._physicSource,
                 drawSource: this._drawSource,
@@ -181,14 +182,16 @@ export default class Game {
         this._back.update(delta)
         this._ground.update(delta)
         this.tube.update(delta)
-        if (this._bird.x >= this.tube.tubes[this.tube.index].x + this.tube.width/2
-            && this._bird.x <= this.tube.tubes[this.tube.index].x + this.tube.width/2 + 5) {
+        if (this.tube.tubes[this.tube.index-2]) {
+        if (this._bird.x >= this.tube.tubes[this.tube.index-2].x + this.tube.width/2
+            && this._bird.x <= this.tube.tubes[this.tube.index-2].x + this.tube.width/2 + 5) {
             this._score.update()
             if (this._score.result === 50
                 || this._score.result === 200
                 || this._score.result === 500) {
                  this._medal.update()
              } 
+        }
         }
 
 
