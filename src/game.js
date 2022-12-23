@@ -123,7 +123,7 @@ export default class Game {
                 animationSpeed: this._config.animationSpeed,
         })
 
-        this.tube = new Tube({
+        this._tube = new Tube({
                 x: this._config.tube.x,
                 y: this._config.tube.y,
                 width: this._config.tube.width,
@@ -176,25 +176,40 @@ export default class Game {
         this._bird.update(delta)
         this._back.update(delta)
         this._ground.update(delta)
-        this.tube.update(delta)
-        if (this.tube.tubes[this.tube.index-2]) {
-        if (this._bird.x >= this.tube.tubes[this.tube.index-2].x + this.tube.width/2
-            && this._bird.x <= this.tube.tubes[this.tube.index-2].x + this.tube.width/2 + 2) {
-            this._score.update()
-            if (this._score.result === 50
-                || this._score.result === 200
-                || this._score.result === 500) {
-                 this._medal.update()
-             } 
-        }
+        this._tube.update(delta)
+        if (this._tube.tubes[this._tube.index-2]) {
+            if (this._bird.x >= this._tube.tubes[this._tube.index-2].x + this._tube.width/2
+                && this._bird.x <= this._tube.tubes[this._tube.index-2].x + this._tube.width/2 + 2) {
+                this._score.update()
+                if (this._score.result === 50
+                    || this._score.result === 200
+                    || this._score.result === 500) {
+                    this._medal.update()
+                } 
+            }
         }
 
+        //  {
+            if ((this._bird.y + this._bird.height >= this.height) // при достижении земли
+            //общее условие столкновения с любой трубой
+            || (this._tube.tubes[this._tube.index-2] && this._tube.tubesUp[this._tube.index-2])
+                && ((this._bird.x + this._bird.width >= this._tube.tubes[this._tube.index-2].x)
+                && (this._bird.x < this._tube.tubes[this._tube.index-2].x + this._tube.width)
+            //столкновение с нижней трубой
+                && (((this._bird.y + this._bird.height > this._tube.tubes[this._tube.index-2].y)
+                && (this._bird.y < this._tube.tubes[this._tube.index-2].y + this._tube.tubes[this._tube.index-2].height))
+            // или с верхней трубой 
+                || (this._bird.y < this._tube.tubesUp[this._tube.index-2].height + this._tube.tubesUp[this._tube.index-2].y)))
+            ) {
+            this.defeat();
+            }
+        // }
 
     }
 
     draw() {
         this._back.draw()
-        this.tube.draw()
+        this._tube.draw()
         this._ground.draw()       
         this._bird.draw()
     }
