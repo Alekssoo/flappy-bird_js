@@ -39,7 +39,7 @@ export default class Game {
                     && y < this._canvCoords.top + this._canvas.height) {
                         this._bird.flap() } //птичка машет
                 } else { //если игра не идет, то при клике 
-                    this.start() // ЛКМ на кнопку рестарт
+                    this.start() // ЛКМ на кнопку происходит рестарт
                 }
             }
         })
@@ -57,9 +57,6 @@ export default class Game {
     }
 
     reset() {
-        //this._score = 0;
-        
-
         this._start = new Start({
             x: this._config.start.x,
             y: this._config.start.y,
@@ -86,8 +83,6 @@ export default class Game {
             animationSpeed: this._config.animationSpeed,
         })
 
-
-
         this._bird = new Bird({
                 x: this._config.bird.x,
                 y: this._config.bird.y,
@@ -101,6 +96,7 @@ export default class Game {
                 game: this,
                 animationSpeed: this._config.animationSpeed,
         })
+
         this._back = new Backgrd({
                 x: this._config.backGround.x,
                 y: this._config.backGround.y,
@@ -113,6 +109,7 @@ export default class Game {
                 game: this,
                 animationSpeed: this._config.animationSpeed,
         })
+
         this._ground = new Ground({
                 x: this._config.ground.x,
                 y: this._config.ground.y,
@@ -133,7 +130,6 @@ export default class Game {
                 height: this._config.tube.height,
                 frames: this._config.tube.frames,
                 gap: this._config.tube.gap,
-                //sourceHeight: this._config.tube.sourceHeight,
                 minHeight: this._config.tube.minHeight,
                 spriteSheet: this._spriteSheet,
                 physicSource: this._physicSource,
@@ -174,7 +170,6 @@ export default class Game {
             animationSpeed: this._config.animationSpeed,
         })
 
-
     }
 
     update(delta) {
@@ -202,14 +197,11 @@ export default class Game {
         this.tube.draw()
         this._ground.draw()       
         this._bird.draw()
-        //this._score._frameIndex = 1
-        //this._score.draw()
     }
 
     _loop() {
         const now = Date.now()
         const delta = now - this._lastUpdate
-        //console.log ("Delta - ", delta)
         this.update(delta / 1000)
 
         if (this._playing) {
@@ -237,11 +229,9 @@ export default class Game {
         
         delete self._button; //убираем саму кнопку
         this._lastUpdate = Date.now() //фиксируем текущее время
-        this.reset() //создаем сущности
-        //this._score.update()
+        this.reset() // пересоздаем сущности
         this._loop() // и запускаем игровой цикл
-        
-
+    
     }
 
     start() {
@@ -269,9 +259,9 @@ export default class Game {
 
 
     defeat() {
-        
         this._playing = false;
 
+        // отрисовка экрана поражения с результатами
         this._score.draw()
         this._medal.draw()
         this._button.draw()

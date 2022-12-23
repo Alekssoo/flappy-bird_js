@@ -53,13 +53,12 @@ export default class Config {
 
     tube = {
         //рисуем на канвасе по этим координатам
-        x: this.canvas.width, //this.canvas.width/2 + 20, 
-        y:  -90, // -120 ранее
-        width: 40, // 40 - работало
-        height: this.canvas.height - this.ground.height - 100, //90 - минимум для нижн. трубы, 120-ранее, 180
+        x: this.canvas.width, 
+        y:  -90,
+        width: 40,
+        height: this.canvas.height - this.ground.height - 100, //100 - минимум для нижн. трубы
         gap: Math.ceil((this.canvas.height - this.ground.height)/4), // зазор - 25% от трубы
         minHeight: 50,
-        //sourceHeight: this.backGround.height - this.ground.height - 90,
 
         frames:[// забираем из спрайта с этими координатами
             {
@@ -69,75 +68,16 @@ export default class Config {
                 h: 180,
 
             },
-            {//тест от верхней трубы
+            {
                 x: 554,
                 y: 220,
                 w: 52,
                 h: 180,
 
             },
-            // резерв {
-            //     x: 502,
-            //     y: 0,
-            //     w: 52,
-            //     h: 120,
-
-            // },
-            // {//тест от верхней трубы
-            //     x: 554,
-            //     y: 287,
-            //     w: 52,
-            //     h: 113,
-
-            // },
-            {
-                x: 502,
-                y: 0,
-                w: 52,
-                h: 160,
-
-            },
-            {
-                x: 502,
-                y: 0,
-                w: 52,
-                h: 100,
-
-            },
-            {
-                x: 502,
-                y: 0,
-                w: 52,
-                h: 140,
-
-            },
         ]
     }
 
-    tubeUp = {
-        //рисуем на канвасе по этим координатам
-        x: this.canvas.width/2 + 20, 
-        y: 0,
-        width: 40,
-        height: 120,
-
-        frames:[// забираем из спрайта с этими координатами
-            {
-                x: 554,
-                y: 287,
-                w: 52,
-                h: 113,
-
-            },
-            {
-                x: 554,
-                y: 327,
-                w: 52,
-                h: 73,
-
-            },
-        ]
-    }
 
     bird = {
         //рисуем на канвасе по этим координатам
