@@ -28,7 +28,9 @@ export default class Entity {
     }
 
     update(delta) {
-        this._frameIndex = (this._frameIndex + Math.ceil(delta)) % this._frames.length;
+        this._frameIndex = (this._frameIndex + Math.ceil(delta * this.animationSpeed)) % this._frames.length;
+        console.log("delta = ", delta)
+        console.log("frameindex = ", this._frameIndex)
         //доработать, добавив умножение delta на константу, 
         //например некую this._animationSpeed, чтобы можно было изменять
         //скорость махов крыльев птицей

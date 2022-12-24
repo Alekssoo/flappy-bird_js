@@ -6,6 +6,7 @@ export default class Tube extends Entity {
         this._gap = params.gap // зазор между трубами
         this._minHeight = params.minHeight
         this.index = 0
+        this.speed = 30
         this.tubesUp = [{
             spriteSheet: this._spriteSheet, 
             image: this._frames[this._frameIndex+1], 
@@ -50,16 +51,16 @@ export default class Tube extends Entity {
 
     update(delta) {
         //постоянное движение труб
-        this.tubes[this.index].x -= Math.ceil(delta * this.animationSpeed * 30); //120 - множитель ранее
+        this.tubes[this.index].x -= Math.ceil(delta * this.speed * this.animationSpeed); //30 - множитель ранее
         this.tubesUp[this.index].x = this.tubes[this.index].x
 
         if ((this.tubes[this.index-1]) && (this.tubesUp[this.index-1])) {
-            this.tubes[this.index-1].x -= Math.ceil(delta * this.animationSpeed * 30);
+            this.tubes[this.index-1].x -= Math.ceil(delta * this.speed * this.animationSpeed);
             this.tubesUp[this.index-1].x = this.tubes[this.index-1].x
         }
 
         if ((this.tubes[this.index-2]) && (this.tubesUp[this.index-2])) {
-            this.tubes[this.index-2].x -= Math.ceil(delta * this.animationSpeed * 30);
+            this.tubes[this.index-2].x -= Math.ceil(delta * this.speed * this.animationSpeed);
             this.tubesUp[this.index-2].x = this.tubes[this.index-2].x
         }
 
