@@ -6,7 +6,7 @@ export default class Start extends Entity {
     }
 
     draw() {
-        //отрисовываем надпись
+        //отрисовываем стартовый экран
         super.draw()
 
     }

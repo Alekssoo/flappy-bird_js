@@ -34,3 +34,26 @@ export default class MouseInputHandler extends Control {
     }
 
 }
+
+export class KeyInputHandler extends Control {
+    buttonIndexNameMap = {
+        "ArrowUp": "up",
+        "ArrowDown": "down",
+        "ArrowLeft": "left",
+        "ArrowRight": "right",
+    }
+
+    eventHandlerMap = {
+        keydown: (event) => {
+            //при клике забираем имя кнопки по массиву выше, 
+            //исходя из полученого кода(цифры)
+            const buttonName = this.buttonIndexNameMap[event.code]
+            const handler = this._eventControlConfig[buttonName]
+            if (handler) {
+                // по имени кнопки берем хэндлер и вызываем его
+                handler(event)
+            }
+        },
+    }
+
+}

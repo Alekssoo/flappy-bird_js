@@ -4,6 +4,7 @@ import Config from "./config.js"
 import CanvasDrawSource from "./drawSources.js"
 import PhysicSource from "./physicSources.js"
 import MouseInputHandler from "./control.js"
+import KeyInputHandler from "./control.js"
 import Bird from "./entities/bird.js"
 import Backgrd from "./entities/back.js"
 import Ground from "./entities/ground.js"
@@ -40,6 +41,19 @@ export default class Game {
                         this._bird.flap() } //птичка машет
                 } else { //если игра не идет, то при клике 
                     this.start() // ЛКМ на кнопку происходит рестарт
+                }
+            }
+        })
+
+        this._controlKey = new KeyInputHandler({
+            up:({x, y}) => {
+                // если игра идет и указатель на canvas
+                if (this._playing) { 
+                    this._bird.flap()  //птичка машет
+                    console.log("Нажата клавиша Вверх на клавиатуре")
+                } else { //если игра не идет, то ничего не происходит
+                    pass 
+                    
                 }
             }
         })
@@ -265,6 +279,7 @@ export default class Game {
         if (this._first) {
             this._drawSource.clear() //очищаем экран
             this._control.subscribe() //подключаем управление
+            this._controlKey.subscribe() // пока в тестовом режиме,не реагирует
 
             this.draw() //отрисовываем основную часть, затем кнопку 
             this._button.draw()
