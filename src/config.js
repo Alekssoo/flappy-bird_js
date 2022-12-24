@@ -184,6 +184,14 @@ export default class Config {
             // },
         ],
 
+        
+    }
+    // для написания баллов
+    scoreWrite = {
+        resX: this.score.x + this.score.width * 0.7,
+        resY: this.score.y + this.score.height * 0.57,
+        bestX: this.score.x + this.score.width * 0.7,
+        bestY: this.score.y + this.score.height * 0.85,
         font: "18px Verdana",
         color: "green"
     }

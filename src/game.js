@@ -149,12 +149,12 @@ export default class Game {
             drawSource: this._drawSource,
             game: this,
             animationSpeed: this._config.animationSpeed,
-            resX: this._config.score.x + this._config.score.width * 0.7,
-            resY: this._config.score.y + this._config.score.height * 0.57,
-            bestX: this._config.score.x + this._config.score.width * 0.7,
-            bestY: this._config.score.y + this._config.score.height * 0.85,
-            font: this._config.score.font,
-            color: this._config.score.color,
+            resX: this._config.scoreWrite.resX,
+            resY: this._config.scoreWrite.resY,
+            bestX: this._config.scoreWrite.bestX,
+            bestY: this._config.scoreWrite.bestY,
+            font: this._config.scoreWrite.font,
+            color: this._config.scoreWrite.color,
         })
 
         this._medal = new Medal({
