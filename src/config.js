@@ -2,7 +2,7 @@ export default class Config {
     gravity = 40 //было 30 
 
    // animationSpeed = 3.1
-    animationSpeed = 4 //работало с 4 корректно(кроме самой птички)
+    animationSpeed = 3 //работало с 4 корректно(кроме самой птички)
     canvas = {
         class: ".game",
         width: 480,

@@ -24,7 +24,7 @@ export default class Game {
 
         this.width = this._config.canvas.width;
         this.height = this._config.canvas.height - this._config.ground.height+7;
-        this._first = true
+        this._first = true // игра запускается впервые (не рестарт)
 
         this._drawSource = new CanvasDrawSource({ canvas: this._canvas });
         this._physicSource = new PhysicSource({gravity: this._config.gravity});
@@ -56,7 +56,8 @@ export default class Game {
         
     }
 
-    reset() {
+    reset() { // пересоздание сущностей
+
         this._start = new Start({
             x: this._config.start.x,
             y: this._config.start.y,
@@ -178,18 +179,28 @@ export default class Game {
         this._ground.update(delta)
         this._tube.update(delta)
         if (this._tube.tubes[this._tube.index-2]) {
+        // увеличиваем очки, если птица прошла середину трубы
             if (this._bird.x >= this._tube.tubes[this._tube.index-2].x + this._tube.width/2
                 && this._bird.x <= this._tube.tubes[this._tube.index-2].x + this._tube.width/2 + 2) {
                 this._score.update()
+                // меняем медаль, если достигли определенного количества очков
                 if (this._score.result === 50
                     || this._score.result === 200
                     || this._score.result === 500) {
                     this._medal.update()
+                    // условия увеличения скорости игры
+                    this._back.increaseSpeed()
+                    this._ground.increaseSpeed()
+                    this._bird.increaseSpeed()
+                    this._tube.increaseSpeed()    
                 } 
             }
         }
 
-        //  {
+        
+
+
+        //  условия поражения
             if ((this._bird.y + this._bird.height >= this.height) // при достижении земли
             //общее условие столкновения с любой трубой
             || (this._tube.tubes[this._tube.index-2] && this._tube.tubesUp[this._tube.index-2])
@@ -203,7 +214,6 @@ export default class Game {
             ) {
             this.defeat();
             }
-        // }
 
     }
 
