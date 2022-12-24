@@ -184,11 +184,11 @@ export default class Game {
                 && this._bird.x <= this._tube.tubes[this._tube.index-2].x + this._tube.width/2 + 2) {
                 this._score.update()
                 // меняем медаль, если достигли определенного количества очков
-                if (this._score.result === 50
+                if (this._score.result === 100
                     || this._score.result === 200
                     || this._score.result === 500) {
                     this._medal.update()
-                    // условия увеличения скорости игры
+                    // и увеличиваем скорость
                     this._back.increaseSpeed()
                     this._ground.increaseSpeed()
                     this._bird.increaseSpeed()
