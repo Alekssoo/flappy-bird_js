@@ -14,7 +14,7 @@ export default class Bird extends Entity {
         this._physicSource.update(this, delta);
 
         if (this.y < 0) {
-            this.y = 0 // при столкновении с потолком возвращаем птичку вниз
+            this.y = 0 // при столкновении с верн. границей возвращаем птичку вниз
         }
     }
 
