@@ -4,7 +4,7 @@ import Config from "./config.js"
 import CanvasDrawSource from "./drawSources.js"
 import PhysicSource from "./physicSources.js"
 import MouseInputHandler from "./control.js"
-import KeyInputHandler from "./control.js"
+import {KeyInputHandler} from "./control.js"
 import Bird from "./entities/bird.js"
 import Backgrd from "./entities/back.js"
 import Ground from "./entities/ground.js"
@@ -50,7 +50,6 @@ export default class Game {
                 // если игра идет и указатель на canvas
                 if (this._playing) { 
                     this._bird.flap()  //птичка машет
-                    console.log("Нажата клавиша Вверх на клавиатуре")
                 } else { //если игра не идет, то ничего не происходит
                     pass 
                     
@@ -216,15 +215,15 @@ export default class Game {
 
         //  условия поражения
             if ((this._bird.y + this._bird.height >= this.height) // при достижении земли
-            //общее условие столкновения с любой трубой
-            || (this._tube.tubes[this._tube.index-2] && this._tube.tubesUp[this._tube.index-2])
-                && ((this._bird.x + this._bird.width >= this._tube.tubes[this._tube.index-2].x)
-                && (this._bird.x < this._tube.tubes[this._tube.index-2].x + this._tube.width)
+            //общее условие столкновения с любой трубой (+3 - для учета погрешности)
+            || (this._tube.tubes[this._tube.index - 2] && this._tube.tubesUp[this._tube.index - 2])
+                && ((this._bird.x + this._bird.width >= this._tube.tubes[this._tube.index-2].x + 3)
+                && (this._bird.x < this._tube.tubes[this._tube.index - 2].x + this._tube.width)
             //столкновение с нижней трубой
-                && (((this._bird.y + this._bird.height > this._tube.tubes[this._tube.index-2].y)
-                && (this._bird.y < this._tube.tubes[this._tube.index-2].y + this._tube.tubes[this._tube.index-2].height))
+                && (((this._bird.y + this._bird.height > this._tube.tubes[this._tube.index - 2].y)
+                && (this._bird.y < this._tube.tubes[this._tube.index - 2].y + this._tube.tubes[this._tube.index - 2].height))
             // или с верхней трубой 
-                || (this._bird.y < this._tube.tubesUp[this._tube.index-2].height + this._tube.tubesUp[this._tube.index-2].y)))
+                || (this._bird.y < this._tube.tubesUp[this._tube.index - 2].height + this._tube.tubesUp[this._tube.index - 2].y)))
             ) {
             this.defeat();
             }

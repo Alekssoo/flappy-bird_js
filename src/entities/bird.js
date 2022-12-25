@@ -3,16 +3,13 @@ import Entity from "./base.js";
 export default class Bird extends Entity {
     constructor(params) {
         super (params)
- //       const {frames, spriteSheet, flapSpeed, physicSource, drawSource, game} = params
         this._speedFlap = params.speedFlap;
         this._physicSource = params.physicSource;
         this.falling = true
-        
     }
 
     update(delta) {
         super.update(delta)
-        //console.log(`(${this._frameIndex} + ${Math.ceil(delta)}) % ${this._frames.length}`)
 
         this._physicSource.update(this, delta);
 
@@ -37,7 +34,7 @@ export default class Bird extends Entity {
     }
 
     flap() {
-        this.speed = -this._speedFlap * 5; //добавил умножение для нормальной скорости изменения высоты птички
+        this.speed = -this._speedFlap; // ранее добавлял умножение 5 для нормальной скорости изменения высоты птички
     }
 
 

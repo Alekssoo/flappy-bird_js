@@ -6,7 +6,7 @@ class Control {
     }
 
     subscribe() { // "подписывается" на событие
-        // в нашем случае на клик
+        // в нашем случае на клик и на кнопку стрелочки вверх на клавиатуре
         Object.entries(this.eventHandlerMap).forEach(([name, handler]) => {
             document.addEventListener(name, handler)
         })
@@ -45,7 +45,7 @@ export class KeyInputHandler extends Control {
 
     eventHandlerMap = {
         keydown: (event) => {
-            //при клике забираем имя кнопки по массиву выше, 
+            //по клавише Вверх  также забираем имя кнопки по массиву выше, 
             //исходя из полученого кода(цифры)
             const buttonName = this.buttonIndexNameMap[event.code]
             const handler = this._eventControlConfig[buttonName]

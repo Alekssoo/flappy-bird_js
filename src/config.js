@@ -1,8 +1,8 @@
 export default class Config {
-    gravity = 40 //было 30 
+    gravity = 32
 
-   // animationSpeed = 3.1
-    animationSpeed = 3 //работало с 4 корректно(кроме самой птички)
+   
+    animationSpeed = 3
     canvas = {
         class: ".game",
         width: 480,
@@ -83,12 +83,10 @@ export default class Config {
         //рисуем на канвасе по этим координатам
         x: 50, 
         y: 120,
-        // width: 34,
-        // height: 25,
         width: 20,
         height: 15,
 
-        speedFlap: 5,
+        speedFlap: 31,
 
         // забираем из спрайта с этими координатами
         frames:[
