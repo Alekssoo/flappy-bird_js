@@ -23,8 +23,6 @@ export default class Game {
         this._canvas.height = this._config.canvas.height;
         this._canvCoords = this._canvas.getBoundingClientRect()
 
-        this.width = this._config.canvas.width;
-        this.height = this._config.canvas.height - this._config.ground.height+7;
         this._first = true // игра запускается впервые (не рестарт)
 
         this._drawSource = new CanvasDrawSource({ canvas: this._canvas });
@@ -214,8 +212,8 @@ export default class Game {
 
 
         //  условия поражения
-            if ((this._bird.y + this._bird.height >= this.height) // при достижении земли
-            //общее условие столкновения с любой трубой (+3 - для учета погрешности)
+            if ((this._bird.y + this._bird.height >= this._canvas.height - this._ground.height + 7) // при достижении земли
+            //общее условие столкновения с любой трубой (+3, 7 - для учета погрешности)
             || (this._tube.tubes[this._tube.index - 2] && this._tube.tubesUp[this._tube.index - 2])
                 && ((this._bird.x + this._bird.width >= this._tube.tubes[this._tube.index-2].x + 3)
                 && (this._bird.x < this._tube.tubes[this._tube.index - 2].x + this._tube.width)
