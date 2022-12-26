@@ -18,11 +18,6 @@ export default class CanvasDrawSource extends DrawSource {
     drawImage({spriteSheet, image, x, y, width, height}) {
         spriteSheet.then(sprite => {
             super.drawImage({spriteSheet, image, x, y, width, height})
-        //для проверки получамого изображения...................
-        //const sprite = document.querySelector(".sprite")
-        //sprite.innerHTML = `<img src="${spriteSheet}">`;
-        //sprite.innerHTML = spriteSheet;
-         //.....................................................
             this._context.drawImage(sprite, image.x, image.y, image.w, image.h, x, y, width, height)
         })
     }

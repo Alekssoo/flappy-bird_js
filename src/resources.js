@@ -1,5 +1,6 @@
 export const RESOURCE_TYPE = {
     IMAGE: "image",
+    AUDIO: "audio",
 }
 
 export default class ResourceLoader {
@@ -12,6 +13,12 @@ export default class ResourceLoader {
                 image.src = src
             })
         },
+        [RESOURCE_TYPE.AUDIO]: async ({url}) => {
+            return fetch(url) 
+            .then((data) => {data.arrayBuffer()})
+            .catch((error) => {console.log(error)})
+            }
+        ,
     }
 
     async load(resource) {

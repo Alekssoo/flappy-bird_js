@@ -1,5 +1,5 @@
 export default class Config {
-    gravity = 32
+    gravity = 34
 
    
     animationSpeed = 3
@@ -84,7 +84,7 @@ export default class Config {
         x: 50, 
         y: 120,
         width: 20,
-        height: 15,
+        height: 16,
 
         speedFlap: 31,
 
@@ -186,9 +186,9 @@ export default class Config {
     }
     // для написания баллов
     scoreWrite = {
-        resX: this.score.x + this.score.width * 0.7,
+        resX: this.score.x + this.score.width * 0.75,
         resY: this.score.y + this.score.height * 0.57,
-        bestX: this.score.x + this.score.width * 0.7,
+        bestX: this.score.x + this.score.width * 0.75,
         bestY: this.score.y + this.score.height * 0.85,
         font: "18px Verdana",
         color: "green"
