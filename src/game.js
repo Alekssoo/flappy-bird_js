@@ -70,11 +70,7 @@ export default class Game {
         this._audioBuffer = this._resourceLoader.load({
             type: RESOURCE_TYPE.AUDIO,
             src: this._config.sound.src,
-            //width: this._config.spriteSheet.width,
-            //height: this._config.spriteSheet.height,
         })
-
-        console.log("тип буфера", typeof this._audioBuffer)
         
     }
 

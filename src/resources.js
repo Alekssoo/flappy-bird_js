@@ -14,10 +14,15 @@ export default class ResourceLoader {
             })
         },
         [RESOURCE_TYPE.AUDIO]: async ({src}) => {
-            return fetch(src) 
-            .then((data) => {data.arrayBuffer()})
-            .catch((error) => {console.log(error)})
-            //audio.src = src
+            return fetch(src)
+                .then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return src }
+                    else {  
+                        return Promise.reject(new Error(response.statusText))  
+                      }  
+                })
+                .catch(error => console.log(error))
             }
         ,
     }
@@ -27,7 +32,7 @@ export default class ResourceLoader {
             const loader =  this._typeLoadersMap[resource.type]
             return await loader(resource)
         } catch (error) {
-            console.log(error);
+            console.error("error");
         }
     }
 }

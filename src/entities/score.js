@@ -11,7 +11,7 @@ export default class Score extends Entity {
         this._font = params.font
         this._color = params.color
 
-        this.best = localStorage.getItem("best") || 0
+        this.best = 0 || localStorage.getItem("best")
     }
 
     draw() {
@@ -26,7 +26,7 @@ export default class Score extends Entity {
             y: this._resY
         })
 
-        if (this.best) {
+        if (localStorage.getItem("best")) {
             this._drawSource.fillText({
                 text: String(this.best),
                 font: this._font,
@@ -39,9 +39,9 @@ export default class Score extends Entity {
 
      update() { 
         this.result += 10;
-        
+        console.log("best = ", this.best)
         if (this.result > this.best) {
-            localStorage.setItem("best", this._result)
+            localStorage.setItem("best", this.result)
         }
 
      }
