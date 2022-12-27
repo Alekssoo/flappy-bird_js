@@ -15,6 +15,12 @@ export default class Config {
         src: '../resources/spritesheet.png',
     }
 
+    sound = {
+        //width: 606,
+        //height: 428,
+        src: '../resources/audio_sfx_point.wav',
+    }
+
     backGround = {
         //рисуем на канвасе по этим координатам
         x: 0, 

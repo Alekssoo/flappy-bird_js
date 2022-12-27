@@ -7,10 +7,10 @@ class AudioSource {
 }
 
 export default class WebApiAudioSource extends AudioSource {
-    constructor({ context }) {
+    constructor() {
         super()
         
-        this._context = context
+        this._context = new AudioContext()
         //this._audio
     }
 
@@ -22,9 +22,8 @@ export default class WebApiAudioSource extends AudioSource {
 
     play(buffer) {
         // получаем буфер с аудио из запроса и декодируем
-        buffer
-            .then(arrayBuffer => {this._context.decodeAudioData(arrayBuffer)})
-            .then(decodedAudio => {this._audio = decodedAudio})
+        buffer.then(arrayBuffer => {this._context.decodeAudioData(arrayBuffer)})
+              .then(decodedAudio => {this._audio = decodedAudio})
 
         this._gainNode = this._context.createGain();
         // создаем источник буфера

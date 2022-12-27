@@ -3,6 +3,7 @@ import ResourceLoader from "./resources.js"
 import Config from "./config.js"
 import CanvasDrawSource from "./drawSources.js"
 import PhysicSource from "./physicSources.js"
+import WebApiAudioSource from "./audioSources.js"
 import MouseInputHandler from "./control.js"
 import {KeyInputHandler} from "./control.js"
 import Bird from "./entities/bird.js"
@@ -27,6 +28,7 @@ export default class Game {
 
         this._drawSource = new CanvasDrawSource({ canvas: this._canvas });
         this._physicSource = new PhysicSource({gravity: this._config.gravity});
+        this._audioSource = new WebApiAudioSource();
         this._resourceLoader = new ResourceLoader();
         this._control = new MouseInputHandler({
             left:({x, y}) => {
@@ -45,7 +47,7 @@ export default class Game {
 
         this._controlKey = new KeyInputHandler({
             up:({x, y}) => {
-                // если игра идет и указатель на canvas
+                // если игра идет
                 if (this._playing) { 
                     this._bird.flap()  //птичка машет
                 } else { //если игра не идет, то ничего не происходит
@@ -64,6 +66,15 @@ export default class Game {
             width: this._config.spriteSheet.width,
             height: this._config.spriteSheet.height,
         })
+
+        this._audioBuffer = this._resourceLoader.load({
+            type: RESOURCE_TYPE.AUDIO,
+            src: this._config.sound.src,
+            //width: this._config.spriteSheet.width,
+            //height: this._config.spriteSheet.height,
+        })
+
+        console.log("тип буфера", typeof this._audioBuffer)
         
     }
 
@@ -198,12 +209,16 @@ export default class Game {
                 if (this._score.result === 100
                     || this._score.result === 200
                     || this._score.result === 500) {
+                    // даем игроку медаль лучше
                     this._medal.update()
                     // и увеличиваем скорость
                     this._back.increaseSpeed()
                     this._ground.increaseSpeed()
                     this._bird.increaseSpeed()
-                    this._tube.increaseSpeed()    
+                    this._tube.increaseSpeed()
+                    
+                    // проигрываем звук
+                    this._audioSource.play(this._audioBuffer)
                 } 
             }
         }

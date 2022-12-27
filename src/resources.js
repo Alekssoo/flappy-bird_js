@@ -13,10 +13,11 @@ export default class ResourceLoader {
                 image.src = src
             })
         },
-        [RESOURCE_TYPE.AUDIO]: async ({url}) => {
-            return fetch(url) 
+        [RESOURCE_TYPE.AUDIO]: async ({src}) => {
+            return fetch(src) 
             .then((data) => {data.arrayBuffer()})
             .catch((error) => {console.log(error)})
+            //audio.src = src
             }
         ,
     }
