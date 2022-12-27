@@ -31,10 +31,10 @@ export default class WebApiAudioSource extends AudioSource {
         // устанавливаем буфер и соединяем с затуханием
         this._source.buffer = this._audio
         this._source.connect(this._gainNode)
-        this._gainNode.connect(this.context.destination)
+        this._gainNode.connect(this._context.destination)
         //this.source.connect(this._context.destination)
         // начинаем воспроизведение
-        this.source.start(this._context, currentTime)
+        this._source.start(this._context.currentTime)
     }
   
 
