@@ -10,13 +10,19 @@ export default class WebApiAudioSource extends AudioSource {
     constructor() {
         super()
         
-        this._context = new AudioContext()
+        //this._context = getAudioContext() //new AudioContext()
         //this._audio
     }
 
+    getAudioContext() {
+        AudioContext = window.AudioContext || window.webkitAudioContext;
+        this._context = new AudioContext();
+        //return audioContext;
+      };
+
     play(src) {
-        // получаем путь к файлу с аудио из запроса и декодируем
-        
+        // получаем проверенный путь к файлу с аудио из запроса и декодируем
+        this.getAudioContext();
         src.then(
             (source) => {
                 console.log("source = ", source)
@@ -33,6 +39,7 @@ export default class WebApiAudioSource extends AudioSource {
         this._source.buffer = this._audio
         this._source.connect(this._gainNode)
         this._gainNode.connect(this._context.destination)
+        console.log("destination = ",this._context.destination)
         // начинаем воспроизведение
         this._source.start(this._context.currentTime)
     }

@@ -39,7 +39,7 @@ export default class Score extends Entity {
 
      update() { 
         this.result += 10;
-        console.log("best = ", this.best)
+        //console.log("best = ", this.best)
         if (this.result > this.best) {
             localStorage.setItem("best", this.result)
         }

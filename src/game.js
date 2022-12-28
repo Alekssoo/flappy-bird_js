@@ -29,6 +29,7 @@ export default class Game {
         this._drawSource = new CanvasDrawSource({ canvas: this._canvas });
         this._physicSource = new PhysicSource({gravity: this._config.gravity});
         this._audioSource = new WebApiAudioSource();
+        
         this._resourceLoader = new ResourceLoader();
         this._control = new MouseInputHandler({
             left:({x, y}) => {
@@ -39,8 +40,10 @@ export default class Game {
                     && y >= this._canvCoords.top
                     && y < this._canvCoords.top + this._canvas.height) {
                         this._bird.flap() } //птичка машет
-                } else { //если игра не идет, то при клике 
+                } else { //если игра не идет, то при клике
+                     
                     this.start() // ЛКМ на кнопку происходит рестарт
+                    
                 }
             }
         })

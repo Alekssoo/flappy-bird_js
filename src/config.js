@@ -89,8 +89,8 @@ export default class Config {
         //рисуем на канвасе по этим координатам
         x: 50, 
         y: 120,
-        width: 20,
-        height: 15,
+        width: 19,
+        height: 14,
 
         speedFlap: 31,
 
