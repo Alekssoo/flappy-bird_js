@@ -90,7 +90,7 @@ export default class Config {
         x: 50, 
         y: 120,
         width: 20,
-        height: 16,
+        height: 15,
 
         speedFlap: 31,
 
