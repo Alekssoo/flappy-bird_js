@@ -90,7 +90,7 @@ export default class Config {
         x: 50, 
         y: 120,
         width: 19,
-        height: 14,
+        height: this.tube.gap/5, //14,
 
         speedFlap: 31,
 

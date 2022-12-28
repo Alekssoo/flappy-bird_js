@@ -74,6 +74,8 @@ export default class Game {
             type: RESOURCE_TYPE.AUDIO,
             src: this._config.sound.src,
         })
+
+        
         
     }
 
@@ -217,7 +219,7 @@ export default class Game {
                     this._tube.increaseSpeed()
                     
                     // проигрываем звук
-                    this._audioSource.play(this._audioBuffer)
+                    this._audioSource.play()
                 } 
             }
         }
@@ -274,6 +276,7 @@ export default class Game {
     restart() {
 
         this._first = false // отмечаем, что уже начали игру
+        this._audioSource.init(this._audioBuffer)
         this._canvas.onclick = null // убираем реакцию по клику на кнопку
         this._playing = true; //запускаем
         
@@ -289,8 +292,8 @@ export default class Game {
 
         if (this._first) {
             this._drawSource.clear() //очищаем экран
-            this._control.subscribe() //подключаем управление
-            this._controlKey.subscribe() // пока в тестовом режиме,не реагирует
+            this._control.subscribe() //подключаем управление мышью
+            this._controlKey.subscribe() //подключаем управление клавиатурой (клавишей стрелка вверх)
 
             this.draw() //отрисовываем основную часть, затем кнопку 
             this._button.draw()
