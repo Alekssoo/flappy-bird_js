@@ -62,7 +62,7 @@ export default class Game {
                 // если игра не идет
                 if (!this._playing) { 
                     this.restart() // запускается новая игра
-                } else { //если игра идет, то ничего не происходит
+                } else { //если игра идет, то птичка машет
                     this._bird.flap() 
                 }
             }
