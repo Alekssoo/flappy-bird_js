@@ -39,7 +39,8 @@ export default class Game {
                     && x < this._canvCoords.left + this._canvas.width
                     && y >= this._canvCoords.top
                     && y < this._canvCoords.top + this._canvas.height) {
-                        this._bird.flap() } //птичка машет
+                        this._bird.flap() //птичка машет
+                        this._audioSource.play("flap") } 
                 } else { //если игра не идет, то при клике
                      
                     this.start() // ЛКМ на кнопку происходит рестарт
@@ -70,12 +71,10 @@ export default class Game {
             height: this._config.spriteSheet.height,
         })
 
-        this._audioBuffer = this._resourceLoader.load({
+        this._audioBuffer = this._resourceLoader.loadAll({
             type: RESOURCE_TYPE.AUDIO,
-            src: this._config.sound.src,
+            src: this._config.sound,
         })
-
-        
         
     }
 
@@ -206,6 +205,7 @@ export default class Game {
             if (this._bird.x >= this._tube.tubes[this._tube.index-2].x + this._tube.width/2
                 && this._bird.x <= this._tube.tubes[this._tube.index-2].x + this._tube.width/2 + 2) {
                 this._score.update()
+                this._audioSource.play("swooshing")
                 // меняем медаль, если достигли определенного количества очков
                 if (this._score.result === 100
                     || this._score.result === 200
@@ -219,7 +219,7 @@ export default class Game {
                     this._tube.increaseSpeed()
                     
                     // проигрываем звук
-                    this._audioSource.play()
+                    this._audioSource.play("point")
                 } 
             }
         }
@@ -239,6 +239,8 @@ export default class Game {
             // или с верхней трубой 
                 || (this._bird.y < this._tube.tubesUp[this._tube.index - 2].height + this._tube.tubesUp[this._tube.index - 2].y)))
             ) {
+            this._audioSource.play("hit") 
+               
             this.defeat();
             }
 
@@ -252,6 +254,7 @@ export default class Game {
     }
 
     _loop() {
+        // игровой цикл
         const now = Date.now()
         const delta = now - this._lastUpdate
         this.update(delta / 1000)
@@ -276,7 +279,7 @@ export default class Game {
     restart() {
 
         this._first = false // отмечаем, что уже начали игру
-        this._audioSource.init(this._audioBuffer)
+        this._audioSource.initAll(this._audioBuffer)
         this._canvas.onclick = null // убираем реакцию по клику на кнопку
         this._playing = true; //запускаем
         
@@ -314,7 +317,7 @@ export default class Game {
 
     defeat() {
         this._playing = false;
-
+        this._audioSource.play("die") 
         // отрисовка экрана поражения с результатами
         this._score.draw()
         this._medal.draw()

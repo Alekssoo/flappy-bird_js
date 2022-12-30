@@ -5,6 +5,7 @@ export const RESOURCE_TYPE = {
 
 export default class ResourceLoader {
     _typeLoadersMap = {
+        // при получении изображения создаем новую картинку
         [RESOURCE_TYPE.IMAGE]: async ({src, width, height}) => {
             return new Promise((resolve, reject) => {          
                 const image = new Image(width, height);
@@ -13,11 +14,12 @@ export default class ResourceLoader {
                 image.src = src
             })
         },
+        // при получении адуиофайла проверям пути
         [RESOURCE_TYPE.AUDIO]: async ({src}) => {
             return fetch(src)
                 .then((response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return src }
+                        return src} 
                     else {  
                         return Promise.reject(new Error(response.statusText))  
                       }  
@@ -27,17 +29,24 @@ export default class ResourceLoader {
         ,
     }
 
-    async load(resource) {
+    async load(resource) { // Одиночная загрузка
         try {
             const loader =  this._typeLoadersMap[resource.type]
             return await loader(resource)
         } catch (error) {
-            console.error("error");
+            console.error(error);
         }
     }
+
+    async loadAll(resources) { // массовая загрузка
+        this._resources = {}
+        for(let key in resources.src) {
+                if (resources.src.hasOwnProperty(key)) {
+                    this._resources[key] = this.load({type:resources.type, src: resources.src[key]})
+                }
+            }
+        return this._resources
+    }
+    
 }
 
-//если далее  будет больше типов ресурсов кроме изображения,
-//то логичнее сделать здесь еще класс для массовой загрузки
-//сохранения их внутри этого класса и затем возможность 
-//их получить из этого класса

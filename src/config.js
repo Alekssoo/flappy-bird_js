@@ -16,9 +16,11 @@ export default class Config {
     }
 
     sound = {
-        //width: 606,
-        //height: 428,
-        src: '../resources/audio_sfx_point.wav',
+        flap: '../resources/audio_sfx_flap.wav',
+        hit: '../resources/audio_sfx_hit.wav',
+        point: '../resources/audio_sfx_point.wav',
+        die: '../resources/audio_sfx_die.wav',
+        swooshing: '../resources/audio_sfx_swooshing.wav',
     }
 
     backGround = {
@@ -89,7 +91,7 @@ export default class Config {
         //рисуем на канвасе по этим координатам
         x: 50, 
         y: 120,
-        width: 19,
+        width: this.tube.width/2,
         height: this.tube.gap/5, //14,
 
         speedFlap: 31,
