@@ -55,8 +55,15 @@ export default class Game {
                 if (this._playing) { 
                     this._bird.flap()  //птичка машет
                 } else { //если игра не идет, то ничего не происходит
-                    pass 
-                    
+                    return false  
+                }
+            },
+            enter:({x, y}) => {
+                // если игра не идет
+                if (!this._playing) { 
+                    this.restart() // запускается новая игра
+                } else { //если игра идет, то ничего не происходит
+                    this._bird.flap() 
                 }
             }
         })
@@ -213,11 +220,12 @@ export default class Game {
                     // даем игроку медаль лучше
                     this._medal.update()
                     // и увеличиваем скорость
-                    this._back.increaseSpeed()
-                    this._ground.increaseSpeed()
-                    this._bird.increaseSpeed()
-                    this._tube.increaseSpeed()
-                    
+                    // this._back.increaseSpeed()
+                    // this._ground.increaseSpeed()
+                    // this._bird.increaseSpeed()
+                    // this._tube.increaseSpeed()
+                    this.increaseSpeed()
+
                     // проигрываем звук
                     this._audioSource.play("point")
                 } 
@@ -244,6 +252,13 @@ export default class Game {
             this.defeat();
             }
 
+    }
+
+    increaseSpeed() {
+        this._back.increaseSpeed()
+        this._ground.increaseSpeed()
+        this._bird.increaseSpeed()
+        this._tube.increaseSpeed()
     }
 
     draw() {

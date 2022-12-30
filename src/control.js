@@ -41,12 +41,13 @@ export class KeyInputHandler extends Control {
         "ArrowDown": "down",
         "ArrowLeft": "left",
         "ArrowRight": "right",
+        "Enter": "enter",
     }
 
     eventHandlerMap = {
         keydown: (event) => {
-            //по клавише Вверх  также забираем имя кнопки по массиву выше, 
-            //исходя из полученого кода(цифры)
+            //по клавише также забираем имя кнопки по массиву выше, 
+            //исходя из полученого названия
             const buttonName = this.buttonIndexNameMap[event.code]
             const handler = this._eventControlConfig[buttonName]
             if (handler) {
