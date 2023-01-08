@@ -54,6 +54,7 @@ export default class Game {
                 // если игра идет
                 if (this._playing) { 
                     this._bird.flap()  //птичка машет
+                    this._audioSource.play("flap")
                 } else { //если игра не идет, то ничего не происходит
                     return false  
                 }
@@ -63,7 +64,8 @@ export default class Game {
                 if (!this._playing) { 
                     this.restart() // запускается новая игра
                 } else { //если игра идет, то птичка машет
-                    this._bird.flap() 
+                    this._bird.flap()
+                    this._audioSource.play("flap") 
                 }
             }
         })
